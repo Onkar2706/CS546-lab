@@ -1,12 +1,14 @@
 export const questionOne = (index) => {
   // Implement question 1 here
-  if (index==1)
+  if (index==0)
     return 0;
-  if (index==2)
+  if (index==1)
     return 1;
   let index1=0
   let index2=1
   let result
+  let i=2
+  
   while (i<index) {
     result=index1+index2
     index1=index2
@@ -37,5 +39,5 @@ export const questionFour = (arr) => {
 export const studentInfo = {
   firstName: 'ONKAR',
   lastName: 'MAHAMUNI',
-  studentId: '2022'
+  studentId: '20022743'
 };
