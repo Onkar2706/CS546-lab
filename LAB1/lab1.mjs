@@ -4,20 +4,8 @@ export const questionOne = (index) => {
     return 0;
   if (index==1)
     return 1;
-  let index1=0
-  let index2=1
-  let result
-  let i=2
   
-  while (i<index) {
-    result=index1+index2
-    index1=index2
-    index2=result
-    i=i+1
-
-    
-  }
-  return index2; //return result
+ return questionOne(index-1)+ questionOne(index-2); //return result
 };
 
 export const questionTwo = (arr) => {
