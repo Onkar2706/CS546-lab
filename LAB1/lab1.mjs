@@ -4,9 +4,18 @@ export const questionOne = (index) => {
     return 0;
   if (index==1)
     return 1;
-  
- return questionOne(index-1)+ questionOne(index-2); //return result
-};
+  let i = 2
+  let num1 = 0
+        let num2 = 1
+        let num3  
+  while(i<=index){
+        num3 = num1+num2 
+        num1= num2 
+        num2 = num3 
+        i+=1
+    }
+    return num3 
+  };
 
 export const questionTwo = (arr) => {
   // Implement question 2 here
