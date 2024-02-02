@@ -18,9 +18,51 @@ export const questionOne = (index) => {
   };
 
 export const questionTwo = (arr) => {
-  // Implement question 2 here
-  return; //return result
+  if(!arr){
+    return {}
+  }
+  if(arr===0){
+    return{}
+  }
+  const result = {}
+  for (let index = 0; index < arr.length; index++) {
+    const element = arr[index];
+    result[element]=Prime(element)
+    
+  }
+  return result
+
 };
+
+export const Prime =(element)=>{
+  let i ;
+  if(element<0){
+    return false
+  }
+  if(element%1 != 0){
+    return false
+  }
+  if(element===0){
+    return true
+  }
+  if(element === 1 ){
+    return false
+  }
+  else{
+    for (i=2;i<element;i++){
+      if (element%i == 0){
+        return false
+        
+      }
+    }
+  }
+
+  return true
+
+  
+}
+
+
 
 export const questionThree = (str) => {
   // Implement question 3 here
