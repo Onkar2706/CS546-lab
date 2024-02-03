@@ -66,7 +66,63 @@ export const Prime =(element)=>{
 
 export const questionThree = (str) => {
   // Implement question 3 here
-  return; //return result
+   const Str = str.toLowerCase()
+   const result ={consonants:0,vowels:0,numbers:0,spaces:0,punctuations:0,specialcharacters:0}
+   var specialcharacters = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+   var punctuations = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+   let countV= 0
+   let countC=0
+   let countN=0
+   let countS=0
+   let countP=0
+   let countSC=0
+   if (str == "") {
+    return result
+    
+   }
+   for (let index = 0; index < Str.length; index++) {
+    const element = Str[index];
+    if (element == 'a' || element == "e" || element == "i" || element == "o" || element == "u") {
+      countV++
+      
+    }
+    else{
+      countC++
+    }
+    if (parseInt(element)) {
+      countN++
+      
+    }
+    if(element.indexOf(' '>=0)){
+      countS++
+
+    }
+    if(element.match(specialcharacters)){
+      countSC++
+    }
+    if(element.match(punctuations)){
+      countP++
+
+    }
+    
+    
+   }
+   result.consonants=countC
+   result.vowels=countV
+   result.numbers=countN
+   result.spaces=countS
+   result.punctuations=countP
+   result.specialcharacters=countSC
+
+
+
+  
+
+  
+  
+
+
+  return result; //return result
 };
 
 export const questionFour = (arr) => {
