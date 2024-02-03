@@ -1,11 +1,11 @@
 import * as lab1 from './lab1.mjs';
 //QuestionOne
-// console.log(lab1.questionOne(0))
-// console.log(lab1.questionOne(1))
-// console.log(lab1.questionOne(5))
-// console.log(lab1.questionOne(7))
-// console.log(lab1.questionOne(23)) 
-// console.log(lab1.questionOne(100))
+console.log(lab1.questionOne(0))
+console.log(lab1.questionOne(1))
+console.log(lab1.questionOne(5))
+console.log(lab1.questionOne(7))
+console.log(lab1.questionOne(23)) 
+console.log(lab1.questionOne(100))
 
 //QuestionTwo
 console.log(lab1.questionTwo([5,3,10]))
@@ -33,6 +33,16 @@ console.log(lab1.questionThree(""));
 // returns and then outputs: {consonants: 0, vowels: 0, numbers:0, spaces: 0, punctuation: 0, specialCharacters: 0}
 console.log(lab1.questionFour([]));
 //returns and then outputs: []
+
+console.log(lab1.questionFour([1, 1, 1, 1, 1, 1]));
+//returns and then outputs: [1]
+console.log(lab1.questionFour([1, '1', 1, '1', 2]));
+// returns and then outputs: [1, '1', 2]
+console.log(lab1.questionFour([3, 'a', 'b', 3, '1']));
+// returns and then outputs: [3, 'a', 'b', '1']
+console.log(lab1.questionFour([]));
+//returns and then outputs: []
+
 
 
 //TODO: Write and call each function in lab1.js 5 times each, passing in different input

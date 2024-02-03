@@ -136,9 +136,14 @@ export const questionFour = (arr) => {
   if(arr.length === 0){
     return []
   }
+  else{
+  
+
+  var uniqueArr = Array.from(new Set(arr)) //got this function Array.from which converts into set from stackoverflow 
+  }
 
 
-  return; //return result
+  return uniqueArr; //return result
 };
 
 //DO NOT FORGET TO UPDATE THE INFORMATION BELOW OR IT WILL BE -2 POINTS PER FIELD THAT IS MISSING.
