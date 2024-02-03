@@ -89,7 +89,7 @@ export const questionThree = (str) => {
       countV++
       
     } 
-    if("bcdfghjklmnpqrstvwxyz".includes(element)){
+    if("bcdfghjklmnpqrstvwxyz".includes(element)){//got this includes command from https://www.shecodes.io/athena/24850-how-to-separate-vowels-and-consonants-from-a-string-in-javascript
       countC++
     }
     
@@ -98,7 +98,7 @@ export const questionThree = (str) => {
       countN++
       
     }
-    if(element.match(' ')){
+    if(element.match(' ')){//found match function on stackoverflow
       countS++
 
     }
