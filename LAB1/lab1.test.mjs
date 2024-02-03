@@ -31,7 +31,8 @@ console.log(lab1.questionThree("CS 546 is going to be fun & I'm looking forward 
 
 console.log(lab1.questionThree("")); 
 // returns and then outputs: {consonants: 0, vowels: 0, numbers:0, spaces: 0, punctuation: 0, specialCharacters: 0}
-
+console.log(lab1.questionFour([]));
+//returns and then outputs: []
 
 
 //TODO: Write and call each function in lab1.js 5 times each, passing in different input

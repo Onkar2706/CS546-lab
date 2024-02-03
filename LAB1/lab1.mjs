@@ -132,6 +132,12 @@ export const questionThree = (str) => {
 
 export const questionFour = (arr) => {
   // Implement question 4 here
+  //resultArr=[]
+  if(arr.length === 0){
+    return []
+  }
+
+
   return; //return result
 };
 
