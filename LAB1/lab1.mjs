@@ -70,30 +70,35 @@ export const questionThree = (str) => {
    const result ={consonants:0,vowels:0,numbers:0,spaces:0,punctuations:0,specialcharacters:0}
    var specialcharacters = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
    var punctuations = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+   
+   
    let countV= 0
    let countC=0
    let countN=0
    let countS=0
    let countP=0
    let countSC=0
-   if (str == "") {
+   if (Str == "") {
     return result
     
    }
    for (let index = 0; index < Str.length; index++) {
     const element = Str[index];
+    
     if (element == 'a' || element == "e" || element == "i" || element == "o" || element == "u") {
       countV++
       
-    }
-    else{
+    } 
+    if("bcdfghjklmnpqrstvwxyz".includes(element)){
       countC++
     }
+    
+    
     if (parseInt(element)) {
       countN++
       
     }
-    if(element.indexOf(' '>=0)){
+    if(element.match(' ')){
       countS++
 
     }
