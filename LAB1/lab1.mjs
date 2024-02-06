@@ -1,5 +1,13 @@
 export const questionOne = (index) => {
   // Implement question 1 here
+  if (index<=0) {
+    return 0
+    
+  }
+  if (index%1 !=0) {
+    return 0
+    
+  }
   if (index==0)
     return 0;
   if (index==1)

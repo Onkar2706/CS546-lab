@@ -1,12 +1,13 @@
 import * as lab1 from './lab1.mjs';
 //QuestionOne
 console.log(lab1.questionOne(0))
-console.log(lab1.questionOne(1))
+console.log(lab1.questionOne(-1))
 console.log(lab1.questionOne(5))
 console.log(lab1.questionOne(7))
 console.log(lab1.questionOne(23)) 
 console.log(lab1.questionOne(100))
 console.log(lab1.questionOne(10))
+console.log(lab1.questionOne(2.5))
 
 //QuestionTwo
 console.log(lab1.questionTwo([5,3,10]))
