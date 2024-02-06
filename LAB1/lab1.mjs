@@ -69,7 +69,7 @@ export const questionThree = (str) => {
    const Str = str.toLowerCase()
    const result ={consonants:0,vowels:0,numbers:0,spaces:0,punctuation:0,specialcharacters:0}
    var specialcharacters = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
-   var punctuations = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+   var punctuation = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
    
    
    let countV= 0
@@ -105,7 +105,7 @@ export const questionThree = (str) => {
     if(element.match(specialcharacters)){
       countSC++
     }
-    if(element.match(punctuations)){
+    if(element.match(punctuation)){
       countP++
 
     }
@@ -116,7 +116,7 @@ export const questionThree = (str) => {
    result.vowels=countV
    result.numbers=countN
    result.spaces=countS
-   result.punctuations=countP
+   result.punctuation=countP
    result.specialcharacters=countSC
 
 
