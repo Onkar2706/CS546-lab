@@ -22,17 +22,23 @@ export const questionOne = (index) => {
         num2 = num3 
         i+=1
     }
-    return num3 
+    return num3 //did not used recurssion as it was taking more time for output for bigger numbers
   };
 
 export const questionTwo = (arr) => {
+   
   if(!arr){
     return {}
+  }
+  if (arr == undefined) {
+    return {}
+
+    
   }
   if(arr===0){
     return{}
   }
-  const result = {}
+  let result = {}
   for (let index = 0; index < arr.length; index++) {
     const element = arr[index];
     result[element]=Prime(element)

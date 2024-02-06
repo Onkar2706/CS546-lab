@@ -15,6 +15,7 @@ console.log(lab1.questionTwo([5,3,10]))
 console.log(lab1.questionTwo([]));
 console.log(lab1.questionTwo([-1,-5,-10]))
 console.log(lab1.questionTwo([4.5,8.7]))
+console.log(lab1.questionTwo())
 //console.log(lab1.questionTwo)
 
 //Question3
