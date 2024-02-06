@@ -1,6 +1,7 @@
 import * as lab1 from './lab1.mjs';
 //QuestionOne
 console.log(lab1.questionOne(0))
+console.log(lab1.questionOne(7.5))
 console.log(lab1.questionOne(-1))
 console.log(lab1.questionOne(5))
 console.log(lab1.questionOne(7))
