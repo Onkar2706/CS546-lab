@@ -67,7 +67,7 @@ export const Prime =(element)=>{
 export const questionThree = (str) => {
   // Implement question 3 here
    const Str = str.toLowerCase()
-   const result ={consonants:0,vowels:0,numbers:0,spaces:0,punctuations:0,specialcharacters:0}
+   const result ={consonants:0,vowels:0,numbers:0,spaces:0,punctuation:0,specialcharacters:0}
    var specialcharacters = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
    var punctuations = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
    
