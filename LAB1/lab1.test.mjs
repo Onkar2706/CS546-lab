@@ -6,7 +6,7 @@ console.log(lab1.questionOne(-1))
 console.log(lab1.questionOne(5))
 console.log(lab1.questionOne(7))
 console.log(lab1.questionOne(23)) 
-console.log(lab1.questionOne(105))
+console.log(lab1.questionOne(108))
 console.log(lab1.questionOne(10))
 console.log(lab1.questionOne(2.5))
 
