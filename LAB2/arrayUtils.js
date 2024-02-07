@@ -5,9 +5,9 @@
 
 let arrayPartition = (arrayToPartition, partitionFunc) => {
 
-  if (typeof(arrayToPartition)=="undefined" && !Array.isArray(arrayToPartition)) { throw "Array is of not proper type"
+  if (typeof(arrayToPartition)=="undefined" || !Array.isArray(arrayToPartition)) throw "Array is of not proper type"
     
-  }
+  
   if (arrayToPartition.length<2) throw "Array do not have sufficient elements"
   if(typeof(partitionFunc)!== "function") throw "Enter a valid function"
 
