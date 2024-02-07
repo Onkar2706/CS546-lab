@@ -3,7 +3,7 @@
       DO NOT CHANGE THE FUNCTION NAMES
 */
 
-let arrayPartition = (arrayToPartition, partitionFunc) => {
+export let arrayPartition = (arrayToPartition, partitionFunc) => {
 
   if (typeof(arrayToPartition)=="undefined" || !Array.isArray(arrayToPartition)) throw "Array is of not proper type"
     
@@ -12,27 +12,31 @@ let arrayPartition = (arrayToPartition, partitionFunc) => {
   if(typeof(partitionFunc)!== "function") throw "Enter a valid function"
 
 
-  arraySubFirst=[]
-  arraySubSecond=[]
+  const arraySubFirst=[]
+  const arraySubSecond=[]
   for (let index = 0; index < arrayToPartition.length; index++) {
-    const element = array[index];
+    const element = arrayToPartition[index];
     if (partitionFunc(element)) {
 
       arraySubFirst.push(element)
+      
       
     }
     else{
       arraySubSecond.push(element)
     }
+
+    // return[arraySubFirst,arraySubSecond]
     
   }
+  return[arraySubFirst,arraySubSecond]
   //code goes here
 };
 
-let arrayShift = (arr, n) => {
+export let arrayShift = (arr, n) => {
   //code goes here
 };
 
-let matrixOne = (matrix) => {
+export let matrixOne = (matrix) => {
   //code goes here
 };
