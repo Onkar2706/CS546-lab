@@ -3,6 +3,8 @@
       DO NOT CHANGE THE FUNCTION NAMES
 */
 
+
+
 export let arrayPartition = (arrayToPartition, partitionFunc) => {
 
   if (typeof(arrayToPartition)=="undefined" || !Array.isArray(arrayToPartition)) throw "Array is of not proper type"
@@ -34,7 +36,36 @@ export let arrayPartition = (arrayToPartition, partitionFunc) => {
 };
 
 export let arrayShift = (arr, n) => {
+
+  if (typeof(arr)=="undefined" || !Array.isArray(arr)) throw "Array is of not proper type"
+  if (arr.length<2) throw "Array do not have sufficient elements"
+  if (typeof(n)=="undefined" || typeof(n) !=="number") throw "Array is of not proper type"
+  if(!Number.isInteger(n)) throw "should be positive negative or zero number"
+
   //code goes here
+  if (n===0) {
+    return arr
+    
+  }
+
+  let ResultArray = []
+  let i=0
+  if (n>0) {
+    while (i<0) {
+      ResultArray[(i+n)%arr.length]=arr[i]
+      i++
+      
+    }
+    
+  }
+  else{
+    while(i<arr.length){
+      ResultArray[(i + n + arr.length)%arr.length] = arr[i]
+      i++;
+    }
+  }
+  return ResultArray
+
 };
 
 export let matrixOne = (matrix) => {

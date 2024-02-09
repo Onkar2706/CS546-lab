@@ -20,3 +20,12 @@ const arrayToPartition4 = [0, -5, 10, -3, 7];
 const partitionFunc4 = (num) => num >= 0; 
 const partitionedArrays4 = arrayPartition(arrayToPartition4, partitionFunc4); // Expected Result: [[0, 10, 7], [-5, -3]]
 console.log(partitionedArrays4)
+
+//ArrayShift
+
+
+arrayShift([3,4,5,6,7], 3)   // returns [5,6,7,3,4]
+arrayShift(["Hello",true, 5,"Patrick","Goodbye"], 4)   // returns [true, 5, "Patrick", "Goodbye", "Hello"]
+arrayShift([1,2,3,4], -2)   // returns [3,4,1,2]
+arrayShift([7,8,9,10], 0) // returns [7,8,9,10]
+arrayShift([7,11,15], 3.5) // throws error
