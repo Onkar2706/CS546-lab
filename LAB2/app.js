@@ -24,8 +24,14 @@ console.log(partitionedArrays4)
 //ArrayShift
 
 
-arrayShift([3,4,5,6,7], 3)   // returns [5,6,7,3,4]
-arrayShift(["Hello",true, 5,"Patrick","Goodbye"], 4)   // returns [true, 5, "Patrick", "Goodbye", "Hello"]
-arrayShift([1,2,3,4], -2)   // returns [3,4,1,2]
-arrayShift([7,8,9,10], 0) // returns [7,8,9,10]
-arrayShift([7,11,15], 3.5) // throws error
+console.log(arrayShift([3,4,5,6,7], 3) )  // returns [5,6,7,3,4]
+console.log(arrayShift(["Hello",true, 5,"Patrick","Goodbye"], 4))   // returns [true, 5, "Patrick", "Goodbye", "Hello"]
+console.log(arrayShift([1,2,3,4], -2))   // returns [3,4,1,2]
+console.log(arrayShift([7,8,9,10], 0)) // returns [7,8,9,10]
+try {
+    console.log(arrayShift([7,11,15], 3.5)) // throws error
+    
+} catch (e) {
+    console.log(e)
+    
+}

@@ -38,6 +38,7 @@ export let arrayPartition = (arrayToPartition, partitionFunc) => {
 export let arrayShift = (arr, n) => {
 
   if (typeof(arr)=="undefined" || !Array.isArray(arr)) throw "Array is of not proper type"
+  if(!Array.isArray(arr)) throw "Not an array"
   if (arr.length<2) throw "Array do not have sufficient elements"
   if (typeof(n)=="undefined" || typeof(n) !=="number") throw "Array is of not proper type"
   if(!Number.isInteger(n)) throw "should be positive negative or zero number"
@@ -48,11 +49,14 @@ export let arrayShift = (arr, n) => {
     
   }
 
+  let range = arr.length
+  let shift =n%range
+
   let ResultArray = []
   let i=0
-  if (n>0) {
-    while (i<0) {
-      ResultArray[(i+n)%arr.length]=arr[i]
+  if (shift>0) {
+    while (i<range) {
+      ResultArray[(i+shift)%arr.length]=arr[i]
       i++
       
     }
@@ -60,7 +64,7 @@ export let arrayShift = (arr, n) => {
   }
   else{
     while(i<arr.length){
-      ResultArray[(i + n + arr.length)%arr.length] = arr[i]
+      ResultArray[(i + range + shift)%arr.length] = arr[i]
       i++;
     }
   }
