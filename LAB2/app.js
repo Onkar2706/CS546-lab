@@ -35,3 +35,23 @@ try {
     console.log(e)
     
 }
+
+
+console.log(matrixOne([[2,2,2],[2,0,2],[2,2,2]])) //returns [[2,1,2],[1,1,1],[2,1,2]] 
+console.log(matrixOne([[0,1,2,0],[3,5,4,2],[1,7,3,5]])) //returns [[1,1,1,1],[1,5,4,1],[1,7,3,1]] 
+try {
+    matrixOne([[0,1,2,0],[3,5,4]])
+    
+} catch (e) {
+    console.log(e)
+    
+}
+//matrixOne([[0,1,2,0],[3,5,4]])// throws error
+//matrixOne([])// throws error
+try {
+    matrixOne([])// throws error
+    
+} catch (e) {
+    console.log(e)
+    
+}

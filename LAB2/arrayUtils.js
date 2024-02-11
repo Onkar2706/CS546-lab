@@ -38,7 +38,7 @@ export let arrayPartition = (arrayToPartition, partitionFunc) => {
 export let arrayShift = (arr, n) => {
 
   if (typeof(arr)=="undefined" || !Array.isArray(arr)) throw "Array is of not proper type"
-  if(!Array.isArray(arr)) throw "Not an array"
+  //if(!Array.isArray(arr)) throw "Not an array"
   if (arr.length<2) throw "Array do not have sufficient elements"
   if (typeof(n)=="undefined" || typeof(n) !=="number") throw "Array is of not proper type"
   if(!Number.isInteger(n)) throw "should be positive negative or zero number"
@@ -73,11 +73,24 @@ export let arrayShift = (arr, n) => {
 };
 
 export let matrixOne = (matrix) => {
+
+
   //code goes here
+  if (typeof(matrix)=="undefined" || !Array.isArray(matrix)) throw "Array is of not proper type" 
+  if(matrix.length===0)throw"Enter values to get started"
+  for (let index = 0; index < matrix.length; index++) {
+    if (!Array.isArray(matrix[index])) {
+
+      throw "there should be an array as a element of matrix"
+      
+    }
+    
+    
+  }
 
   let colSize=matrix[0].length
 
-  for (let rowSize  = 0; rowSize < matrix.length ; i++) {
+  for (let rowSize  = 0; rowSize < matrix.length ; rowSize++) {
     if (matrix[rowSize].length !==colSize) throw "Matrix row and column are not equal"
 
     for (let index = 0; index < matrix[rowSize].length; index++) {
@@ -109,10 +122,13 @@ export let matrixOne = (matrix) => {
     for (let j = 0;  j < matrix[i].length; j++) {
       if (Row.has(i)||Col.has(j)) {
         
-        matrix[i][j]==1
+        matrix[i][j]=1
       }
     }
   }
+  
+  
+ return matrix
 
 
 };
