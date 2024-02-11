@@ -74,4 +74,45 @@ export let arrayShift = (arr, n) => {
 
 export let matrixOne = (matrix) => {
   //code goes here
+
+  let colSize=matrix[0].length
+
+  for (let rowSize  = 0; rowSize < matrix.length ; i++) {
+    if (matrix[rowSize].length !==colSize) throw "Matrix row and column are not equal"
+
+    for (let index = 0; index < matrix[rowSize].length; index++) {
+      if (typeof(matrix[rowSize][index]) !== 'number') {
+        throw "please enter a number in all matrices"
+        
+      }
+      
+    }
+      
+  }
+
+  let Row = new Set();
+  let Col = new Set()
+
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0;  j < matrix[i].length; j++) {
+      if (matrix[i][j]===0) {
+        Row.add(i)
+        Col.add(j)
+        
+      }
+      
+    }
+    
+  }
+
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0;  j < matrix[i].length; j++) {
+      if (Row.has(i)||Col.has(j)) {
+        
+        matrix[i][j]==1
+      }
+    }
+  }
+
+
 };
