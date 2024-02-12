@@ -1,6 +1,8 @@
 /* TODO: Import the functions from your three modules here and write two test cases for each function.. You should have a total of 18 test cases. 
 do not forget that you need to create the package.json and add the start command to run app.js as the starting script*/
 import { arrayPartition,arrayShift,matrixOne } from "./arrayUtils.js";
+import {swapChars,longestCommonSubstring,palindromeOrIsogram}from "./stringUtils.js";
+
 const arrayToPartition1 = [1, 2, 3, 4, 5]; 
 const partitionFunc1 = (num) => num % 2 === 0; 
 const partitionedArrays1 = arrayPartition(arrayToPartition1, partitionFunc1); // Expected Result: [[2, 4], [1, 3, 5]]
@@ -55,3 +57,74 @@ try {
     console.log(e)
     
 }
+
+
+
+
+console.log(swapChars("Patrick", "Hill")); //Returns "Hillick Patr"
+console.log(swapChars("hello", "world")); //Returns "worlo helld"
+try {
+    console.log(swapChars("Patrick", "")); //Throws error
+    
+} catch (e) {
+    console.log(e)
+
+    
+}
+
+
+try {
+    swapChars(); // Throws Error
+    
+} catch (e) {
+    console.log(e)
+
+    
+}
+
+try {
+    swapChars("John") // Throws error
+    
+} catch (e) {
+    console.log(e)
+
+    
+}
+
+try {
+    swapChars ("h", "Hello") // Throws Error
+    
+} catch (e) {
+    console.log(e)
+
+    
+}
+
+try {
+    swapChars ("h","e") // Throws Error
+    
+} catch (e) {
+    console.log(e)
+
+    
+}
+
+
+
+
+try {
+   console.log( swapChars ("h","e")) // Throws Error
+    
+} catch (e) {
+    console.log(e)
+    
+}
+
+try {
+    console.log(swapChars("undefined","undefined"))
+    
+} catch (e) {
+    console.log(e)
+    
+}
+
