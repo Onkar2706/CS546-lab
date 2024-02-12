@@ -21,6 +21,17 @@ export let swapChars = (string1, string2) => {
 
 export let longestCommonSubstring = (str1, str2) => {
   //code goes here
+
+  let max =0
+  let min =0
+  for (let i = 0; str1.length; i++) {
+    for (let j = 0; j < str2.length; j++) {
+      
+      
+    }
+    
+    
+  }
 };
 
 export let palindromeOrIsogram = (arrStrings) => {
