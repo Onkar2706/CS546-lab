@@ -2,6 +2,7 @@
 do not forget that you need to create the package.json and add the start command to run app.js as the starting script*/
 import { arrayPartition,arrayShift,matrixOne } from "./arrayUtils.js";
 import {swapChars,longestCommonSubstring,palindromeOrIsogram}from "./stringUtils.js";
+import { objectStats, nestedObjectsDiff,mergeAndSumValues } from "./objectUtils.js";
 
 const arrayToPartition1 = [1, 2, 3, 4, 5]; 
 const partitionFunc1 = (num) => num % 2 === 0; 
