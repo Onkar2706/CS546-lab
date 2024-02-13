@@ -173,4 +173,21 @@ console.log(statsResult3)
 // Expected Result: { mean: 0.056, median: 0, mode: 0, range: 15.2, minimum: -8, maximum: 7.2, count: 9, sum: 0.5 }
 
 
+
+const obj1 = { key1: "value1", key2: { nestedKey: "nestedValue", arrayKey: [1, 2, 3], }, }; 
+const obj2 = { key1: "value1", key2: { nestedKey: "differentValue", arrayKey: [1, 2, 4], }, key3: "newKey", }; 
+const differences = nestedObjectsDiff(obj1, obj2);
+console.log(differences)
+
+
+const obj1_1 = { a: 1, b: { c: 2, d: [3, 4] }, e: "hello" }; 
+const obj2_1 = { a: 1, b: { c: 2, d: [3, 5] }, f: "world" }; 
+const differences1 = nestedObjectsDiff(obj1_1, obj2_1); // Expected Result: { b: { d: [3, 5] }, e: undefined, f: "world" }
+console.log(differences1)
+
+const obj3 = { x: { y: { z: 1 } } }; 
+const obj4 = { x: { y: { z: 1 } } }; 
+const differences2 = nestedObjectsDiff(obj3, obj4); // Expected Result: {} // Both objects are identical, so no differences are found.
+console.log(differences2)
+
  

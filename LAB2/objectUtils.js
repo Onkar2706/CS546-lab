@@ -108,8 +108,47 @@ export let objectStats = (arrObjects) => {
 };
 
 export let nestedObjectsDiff = (obj1, obj2) => {
-  //Code goes here
+  const diff = {};
+  
+  
+  for (const key in obj1) {
+    const element = obj1[key];
+    if (typeof element === 'object' && typeof obj2[key] === 'object') {
+      const nestedDiff = nestedObjectsDiff(element, obj2[key]);
+      if (Object.keys(nestedDiff).length > 0) {
+        diff[key] = nestedDiff;
+      }
+    } else if (!Array.isArray(obj1[key]) && Array.isArray(obj2[key])) {
+      if (!arrayCheck(obj1[key], obj2[key])) {
+        diff[key] = obj2[key];
+      }
+    } else if (obj1[key] !== obj2[key]) {
+      diff[key] = obj2[key];
+    }
+  }
+
+  
+  for (const key in obj2) {
+    if (typeof obj1[key] === 'undefined') {
+      diff[key] = obj2[key];
+    }
+  }
+
+  return diff;
 };
+
+function arrayCheck(arr1, arr2) {
+  if (arr1.length !== arr2.length) return false;
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr1[i] !== arr2[i]) return false;
+  }
+  return true;
+}
+
+
+
+
+
 
 export let mergeAndSumValues = (...args) => {
   //this function takes in a variable number of objects that's what the ...args signifies
