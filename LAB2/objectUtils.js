@@ -108,6 +108,12 @@ export let objectStats = (arrObjects) => {
 };
 
 export let nestedObjectsDiff = (obj1, obj2) => {
+
+  if (typeof obj1 !== 'object' || typeof obj2 !== 'object' || obj1 === null || obj2 === null) throw "please enter a object "
+  if (Object.keys(obj1).length === 0 || Object.keys(obj2).length === 0) throw "Both objects should have atleast1 key/value pair"
+
+
+
   const diff = {};
   
   
@@ -152,4 +158,6 @@ function arrayCheck(arr1, arr2) {
 
 export let mergeAndSumValues = (...args) => {
   //this function takes in a variable number of objects that's what the ...args signifies
+
+  
 };
