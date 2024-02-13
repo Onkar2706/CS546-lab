@@ -129,3 +129,34 @@ try {
     
 }
 
+
+
+
+// common substring 
+
+const str1 = "abcdxyz"; 
+const str2 = "xyzabcd"; 
+console.log(longestCommonSubstring(str1, str2)); // Expected Result: "abcd"
+
+ const str1_1 = "programming"; 
+ const str2_1 = "programmer"; 
+ console.log(longestCommonSubstring(str1_1, str2_1)); // Expected Result: "programm"
+
+ const str1_2 = "abcdef"; 
+ const str2_2 = "123456"; 
+ console.log(longestCommonSubstring(str1_2, str2_2)); // Expected Result: "" // No common substring in this case
+
+ const str1_3 = "abcdef"; 
+ const str2_3 = "acdfgh"; 
+ console.log(longestCommonSubstring(str1_3, str2_3)); // Expected Result: "cd"
+
+
+ const checkStrings = (["Madam", "Lumberjack", "He did, eh?", "Background", "Taco cat? Taco cat.", "Invalid String"]); 
+const results = palindromeOrIsogram(checkStrings); 
+console.log(results);
+//returns and then logs:
+//{ "Madam": "Palindrome", "Lumberjack": "Isogram", "He did, eh?": "Palindrome", "Background": "Isogram", "Taco cat? Taco cat.": "Palindrome", "Invalid String": "Neither" }
+
+
+
+ 
