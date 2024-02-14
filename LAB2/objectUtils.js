@@ -108,12 +108,6 @@ export let objectStats = (arrObjects) => {
 };
 
 export let nestedObjectsDiff = (obj1, obj2) => {
-
-  if (typeof obj1 !== 'object' || typeof obj2 !== 'object' || obj1 === null || obj2 === null) throw "please enter a object "
-  if (Object.keys(obj1).length === 0 || Object.keys(obj2).length === 0) throw "Both objects should have atleast1 key/value pair"
-
-
-
   const diff = {};
   
   
@@ -124,7 +118,7 @@ export let nestedObjectsDiff = (obj1, obj2) => {
       if (Object.keys(nestedDiff).length > 0) {
         diff[key] = nestedDiff;
       }
-    } else if (!Array.isArray(obj1[key]) && Array.isArray(obj2[key])) {
+    } else if (Array.isArray(obj1[key]) && Array.isArray(obj2[key])) {
       if (!arrayCheck(obj1[key], obj2[key])) {
         diff[key] = obj2[key];
       }
@@ -143,6 +137,7 @@ export let nestedObjectsDiff = (obj1, obj2) => {
   return diff;
 };
 
+
 function arrayCheck(arr1, arr2) {
   if (arr1.length !== arr2.length) return false;
   for (let i = 0; i < arr1.length; i++) {
@@ -157,7 +152,38 @@ function arrayCheck(arr1, arr2) {
 
 
 export let mergeAndSumValues = (...args) => {
-  //this function takes in a variable number of objects that's what the ...args signifies
 
-  
+  args.forEach(arg=>{
+    if ( arg == undefined) throw "Please give only objects as input"
+    if(typeof arg !== 'object') throw "not an object"
+    if (Object.keys(arg).length===0) throw "Both objects should have atleast1 key/value pair"
+    for(const val of Object.values(arg)){
+      if ((Number.isNaN(val) )) throw "We need only numbers"
+
+    }
+  })
+     
+
+
+  const finalop = {}
+  for (let index = 0; index < args.length; index++) {
+    const element = args[index];
+    for (const e in element) {
+
+      if (e in finalop) {
+        
+
+        finalop[e]+= parseInt(Number(element[e]))
+        
+      }else{
+        finalop[e]= parseInt(Number(element[e]))
+      }
+      
+    }
+    
+  }
+  //this function takes in a variable number of objects that's what the ...args signifies
+  return finalop
+
+
 };
