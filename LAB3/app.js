@@ -10,13 +10,21 @@ Note:
 2. Do not create any other files beside the 'package.json' - meaning your zip should only have the files and folder in this stub and a 'package.json' file.
 3. Submit all files (including package.json) in a zip with your name in the following format: LastName_FirstName.zip.
 4. DO NOT submit a zip containing your node_modules folder.
+*/
 
-import * as authors from "./authors.js");
+import { getAuthorById } from "./authors.js"; 
 
     try{
-        const authorData = await authors.getAuthors();
-        console.log (authorData);
+        const author=await getAuthorById("1871e6d7-551f-41cb-9a07-08240b86c95c");
+        console.log (author);
     }catch(e){
         console.log (e);
     }
-*/
+
+    try{
+        const author=await getAuthorById("-1");
+        console.log (author);
+    }catch(e){
+        console.log (e);
+    }
+
