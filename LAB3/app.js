@@ -12,7 +12,7 @@ Note:
 4. DO NOT submit a zip containing your node_modules folder.
 */
 
-import { getAuthorById } from "./authors.js"; 
+import { getAuthorById, searchAuthorsByAge } from "./authors.js"; 
 
     try{
         const author=await getAuthorById("1871e6d7-551f-41cb-9a07-08240b86c95c");
@@ -28,3 +28,13 @@ import { getAuthorById } from "./authors.js";
         console.log (e);
     }
 
+
+
+    (async () => {
+        try {
+            const authors = await searchAuthorsByAge(40);
+            console.log(authors);
+        } catch (error) {
+            console.error(error.message);
+        }
+    })();
