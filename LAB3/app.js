@@ -12,29 +12,54 @@ Note:
 4. DO NOT submit a zip containing your node_modules folder.
 */
 
-import { getAuthorById, searchAuthorsByAge } from "./authors.js"; 
+import { getAuthorById, searchAuthorsByAge, getBooksByState, searchAuthorsByHometown } from "./authors.js"; 
 
-    try{
-        const author=await getAuthorById("1871e6d7-551f-41cb-9a07-08240b86c95c");
-        console.log (author);
-    }catch(e){
-        console.log (e);
+    // try{
+    //     const author=await getAuthorById("1871e6d7-551f-41cb-9a07-08240b86c95c");
+    //     console.log (author);
+    // }catch(e){
+    //     console.log (e);
+    // }
+
+    // try{
+    //     const author=await getAuthorById("-1");
+    //     console.log (author);
+    // }catch(e){
+    //     console.log (e);
+    // }
+
+
+
+    // (async () => {
+    //     try {
+    //         const authors = await searchAuthorsByAge(40);
+    //         console.log(authors);
+    //     } catch (error) {
+    //         console.error(error.message);
+    //     }
+    // })();
+
+
+
+    // (async () => {
+    //     try {
+    //       const result1 = await getBooksByState('NJ');
+    //       console.log(result1); // ["Summertime", "Crime and Punishment"]
+      
+    //       // Test cases for error conditions
+    //       // await getBooksByState(123); // Throws Error
+    //       // await getBooksByState(" "); // Throws Error
+    //       // await getBooksByState("Patrick"); // Throws Error
+    //       // await getBooksByState(); // Throws Error
+    //     } catch (error) {
+    //       console.log(error);
+    //     }
+    //   })();
+
+
+    try {
+        const authors = searchAuthorsByHometown("New York City", "NY");
+        console.log(authors);
+    } catch (error) {
+        console.error(error.message);
     }
-
-    try{
-        const author=await getAuthorById("-1");
-        console.log (author);
-    }catch(e){
-        console.log (e);
-    }
-
-
-
-    (async () => {
-        try {
-            const authors = await searchAuthorsByAge(40);
-            console.log(authors);
-        } catch (error) {
-            console.error(error.message);
-        }
-    })();
