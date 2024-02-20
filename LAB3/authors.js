@@ -145,4 +145,24 @@ export const searchAuthorsByHometown = async (town, state) => {
 
 }
 
-const getAuthorBooks = async (authorid) => {};
+export const getAuthorBooks = async (authorid) => {
+    const author = await getAuthorById(authorid)
+    console.log(author )
+    const aBooks = []
+
+    for (let index = 0; index < author.books.length; index++) {
+        const element4 = author.books[index];
+        
+        const book = books.find(function(book) {
+            return book.id === element4;
+        });
+
+        if(book) {
+            aBooks.push(book.title)
+        }
+
+    }
+
+    return aBooks
+        
+};

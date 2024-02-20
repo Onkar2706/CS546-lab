@@ -12,7 +12,7 @@ Note:
 4. DO NOT submit a zip containing your node_modules folder.
 */
 
-import { getAuthorById, searchAuthorsByAge, getBooksByState, searchAuthorsByHometown } from "./authors.js"; 
+import { getAuthorById, searchAuthorsByAge, getBooksByState, searchAuthorsByHometown,getAuthorBooks } from "./authors.js"; 
 
     // try{
     //     const author=await getAuthorById("1871e6d7-551f-41cb-9a07-08240b86c95c");
@@ -57,9 +57,16 @@ import { getAuthorById, searchAuthorsByAge, getBooksByState, searchAuthorsByHome
     //   })();
 
 
+    // try {
+    //     const authors = searchAuthorsByHometown("New York City", "NY");
+    //     console.log(authors);
+    // } catch (error) {
+    //     console.error(error.message);
+    // }
+
     try {
-        const authors = searchAuthorsByHometown("New York City", "NY");
-        console.log(authors);
+        const books = await getAuthorBooks("69b3f32f-5690-49d1-b9a6-9d2dd7d6e6cd");
+        console.log(books);
     } catch (error) {
         console.error(error.message);
     }
