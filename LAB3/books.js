@@ -1,11 +1,55 @@
 //TODO EXPORT AND IMPLEMENT THE FOLLOWING FUNCTIONS IN ES6 FORMAT
 //Books data link: https://gist.githubusercontent.com/graffixnyc/3381b3ba73c249bfcab1e44d836acb48/raw/e14678cd750a4c4a93614a33a840607dd83fdacc/books.json
+import axios from "axios";
+const fetchAuthor = await axios.get('https://gist.githubusercontent.com/graffixnyc/a086a55e04f25e538b5d52a095fe4467/raw/e9f835e9a5439a647a24fa272fcb8f5a2b94dece/authors.json')
+const authors = fetchAuthor.data
 
-const getBookById = async (id) => {};
+const fetchBook = await axios.get('https://gist.githubusercontent.com/graffixnyc/3381b3ba73c249bfcab1e44d836acb48/raw/e14678cd750a4c4a93614a33a840607dd83fdacc/books.json')
+const books = fetchBook.data
 
-const booksByPageCount = async (min, max) => {};
+export const getBookById = async (id) => {
+    id =id.trim();
+    if(!id  || typeof id !== 'string') throw "ID is not available"
+    if(id.trim()==='' ) throw "You passed empty value"
 
-const sameYear = async (year) => {};
+    const book = books.find(book => book.id === id)
+    if(!book) throw "Book is not available"
+
+    return book
+
+};
+
+export const booksByPageCount = async (min, max) => {
+    if(min === undefined || max === undefined) throw "value is not vanish"
+    if(typeof min !== 'number' || typeof max !== 'number') throw "Please enter only number"
+    if(max<=min) throw "Max number should be bigger"
+    if(!Number.isInteger(min) || !Number.isInteger(max)) throw "please enter whole number"
+    if(min<0 || max<0) throw "number should be bigger than 0"
+
+    const vBooks = []
+    for (let index = 0; index < books.length; index++) {
+        const element5 = books[index];
+        if (element5.pageCount >= min && element5.pageCount <= max) {
+            vBooks.push(element5);
+        
+    }
+}
+
+    const booksiDs=[]
+    for (let index = 0; index < vBooks.length; index++) {
+        const element6 = vBooks[index];
+        booksiDs.push(element6.id)
+        
+    }
+
+    return booksiDs
+ 
+
+};
+
+const sameYear = async (year) => {
+    
+};
 
 const minMaxPrice = async () => {};
 

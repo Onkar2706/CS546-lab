@@ -13,6 +13,7 @@ Note:
 */
 
 import { getAuthorById, searchAuthorsByAge, getBooksByState, searchAuthorsByHometown,getAuthorBooks } from "./authors.js"; 
+import{getBookById,booksByPageCount} from"./books.js";
 
     // try{
     //     const author=await getAuthorById("1871e6d7-551f-41cb-9a07-08240b86c95c");
@@ -64,9 +65,24 @@ import { getAuthorById, searchAuthorsByAge, getBooksByState, searchAuthorsByHome
     //     console.error(error.message);
     // }
 
+    // try {
+    //     const books = await getAuthorBooks("69b3f32f-5690-49d1-b9a6-9d2dd7d6e6cd");
+    //     console.log(books);
+    // } catch (error) {
+    //     console.error(error.message);
+    // }
+
+    // try {
+    //     const book = getBookById("99875ad8-a1d3-42ea-8d7b-5ac4cd4edb9e");
+    //     console.log(book);
+    // } catch (error) {
+    //     console.error(error.message);
+    // }
+
+
     try {
-        const books = await getAuthorBooks("69b3f32f-5690-49d1-b9a6-9d2dd7d6e6cd");
-        console.log(books);
+        const result = booksByPageCount(300, 500);
+        console.log(result);
     } catch (error) {
         console.error(error.message);
     }
