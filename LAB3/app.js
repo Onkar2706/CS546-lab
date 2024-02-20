@@ -13,7 +13,7 @@ Note:
 */
 
 import { getAuthorById, searchAuthorsByAge, getBooksByState, searchAuthorsByHometown,getAuthorBooks } from "./authors.js"; 
-import{getBookById,booksByPageCount} from"./books.js";
+import{getBookById,booksByPageCount,sameYear,minMaxPrice,searchBooksByPublisher} from"./books.js";
 
     // try{
     //     const author=await getAuthorById("1871e6d7-551f-41cb-9a07-08240b86c95c");
@@ -80,9 +80,37 @@ import{getBookById,booksByPageCount} from"./books.js";
     // }
 
 
-    try {
-        const result = booksByPageCount(300, 500);
-        console.log(result);
-    } catch (error) {
-        console.error(error.message);
-    }
+    // try {
+    //     const result = booksByPageCount(300, 500);
+    //     console.log(result);
+    // } catch (error) {
+    //     console.error(error.message);
+    // }
+
+
+    // try {
+    //     const booksPublishedIn2000 =  await sameYear(2000);
+    //     console.log(booksPublishedIn2000);
+    // } catch (error) {
+    //     console.error(error.message);
+    // }
+
+
+
+    // const booksPublishedIn2000 =  await minMaxPrice();
+    // console.log(booksPublishedIn2000)
+
+
+    try{
+       const test = await searchBooksByPublisher("Podcat");  
+       console.log(test);
+   }catch(e){
+       console.log (e);
+   }
+
+// try{
+//        const test = await minMaxPrice();  
+//        console.log(test);
+//    }catch(e){
+//        console.log (e);
+//    }

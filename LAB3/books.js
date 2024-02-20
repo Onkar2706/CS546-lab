@@ -47,10 +47,67 @@ export const booksByPageCount = async (min, max) => {
 
 };
 
-const sameYear = async (year) => {
+export const sameYear = async (year) => {
+
+    if(year==undefined) throw "not valid parameter"
+    if(year<=0) throw "Enter valid year"
+    if(!Number.isInteger(year)) throw "Year must be valid parameter"
+
+    const bookYear =[]
+
+    for (let index = 0; index < books.length; index++) {
+        //const element7 = books[index];
+        const publicationYear = new Date(books[index].publicationDate).getFullYear();
+        if (publicationYear === year) {
+        bookYear.push(books[index]);
+    }
+}
+     return bookYear
+        
     
+
+    f
+
 };
 
-const minMaxPrice = async () => {};
+export const minMaxPrice = async () => {
+    let lowPrice = 100000
+    let highPrice = 0
+    let lowBooks =[]
+    let highPriceBook=[]
 
-const searchBooksByPublisher = async (publisher) => {};
+    for(const book of books){
+        const value = book.price;
+        if(value<lowPrice){
+            lowPrice = value
+            lowBooks =[book.id]
+
+        }else if(value === lowPrice){
+            lowBooks.push(book.id)
+
+        }
+
+        if(value>highPrice){
+            highPrice = value
+            highPriceBook =[book.id]
+        }else if (value === highPrice){
+            highPriceBook.push(book.id)
+
+        }
+    }
+    return{cheapest: lowBooks,mostExpensive:highPriceBook}
+};
+
+export const searchBooksByPublisher = async (publisher) => {
+    if(!publisher ) throw "Enter a value"
+    if (typeof publisher !== 'string') throw "Please enter valid name"
+
+
+    const sameBooks = books.filter(book => book.publisher === publisher);
+    if(sameBooks.length === 0) throw "no books"
+
+
+    const resultBooks = sameBooks.map(book=>book.id)
+
+    return resultBooks
+};
