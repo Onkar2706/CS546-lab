@@ -73,7 +73,11 @@ catch(error){
 };
 
 const getBooksByState = async (state) => {
-    
+
+    if(state === undefined) throw "Please enter valid state"
+    if(state !== 'string') throw "Please give valid string"
+    if(state.length !== 2)  throw "Please enter only State shortforms"
+
 };
 
 const searchAuthorsByHometown = async (town, state) => {};
