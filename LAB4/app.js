@@ -17,3 +17,5 @@ Try to rename a product passing in invalid data for the newProductName parameter
 Try getting a product by ID that does not exist to make sure it throws errors.
 
 */
+import productData from './data/products.js'
+
