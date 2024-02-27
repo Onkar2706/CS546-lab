@@ -131,7 +131,28 @@ export const  create = async (
 
  };
 
- rename : async (id, newProductName) => {};
+ export const rename = async (id, newProductName) => {
+  if (!id) throw 'You must provide an id to search for';
+  if (typeof id !== 'string') throw 'Id must be a string';
+    if (id.trim().length === 0)
+      throw 'Id cannot be an empty string or just spaces';
+    id = id.trim();
+    if (!ObjectId.isValid(id)) throw 'invalid object ID';
+    if (!newProductName) throw 'You must provide a name for your dog';
+    if (typeof newProductName !== 'string') throw 'Name must be a string';
+    if (newProductName.trim().length === 0) throw 'Name cannot be an empty string or string with just spaces';
+    const productCollection = await products();
+    const product = await productCollection.findOne({ _id: new ObjectId(id.trim()) });
+    if(!product) throw "product not found"
+    if (product.productName === newProductName.trim()) throw "new product name is same "
+    const updatedProduct = await productCollection.findOneAndUpdate(
+      { _id: new ObjectId(id.trim()) },
+      { $set: { productName: newProductName.trim() } },
+      { returnOriginal: false }
+    );
+    return updatedProduct.value
+    
+ };
 
 
 
