@@ -1,5 +1,5 @@
 // TODO: Export and implement the following functions in ES6 format
-import {products} from '../mongoCollections.js';
+import {products} from '../config/mongoCollections.js';
 import {ObjectId} from 'mongodb';
 
 export const  create = async (

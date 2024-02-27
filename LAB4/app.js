@@ -18,7 +18,7 @@ Try getting a product by ID that does not exist to make sure it throws errors.
 
 */
 import { create, getAll,remove, rename,get} from './data/products.js';
-import { dbConnection, closeConnection } from './mongoConnection.js';
+import { dbConnection, closeConnection } from './config/mongoConnection.js';
 
 const db = await dbConnection();
 await db.dropDatabase();
