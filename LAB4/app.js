@@ -321,10 +321,10 @@ await db.dropDatabase();
   
   
   
-  
+      
 
-
+await closeConnection();
 })();
 
-await closeConnection()
+
 
