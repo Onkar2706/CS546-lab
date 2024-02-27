@@ -30,9 +30,9 @@ export const  create = async (
   }
 
   function validateManufacturerWebsite(website) {
-      if( typeof website === 'string' && website.trim().startsWith("http://www.") && website.trim().endsWith(".com") && website.trim().length > 19) throw "Invalid Url"
+      if( typeof website === 'string' && website.trim().startsWith("http://www.") && website.trim().endsWith(".com") && website.trim().length > 19) return false
       const websiteRegex = /^http:\/\/www\.([a-zA-Z0-9]{5,})\.com$/;
-      if(!websiteRegex.test(website.trim())) throw "enter proper URL"
+      if(!websiteRegex.test(website.trim())) return false
       return true
   }
 
