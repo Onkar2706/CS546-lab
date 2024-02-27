@@ -1,8 +1,8 @@
 // TODO: Export and implement the following functions in ES6 format
-import {products} from './mongoCollections.js';
+import {products} from '../mongoCollections.js';
 import {ObjectId} from 'mongodb';
 
-export const create = async (
+export const  create = async (
   productName,
   productDescription,
   modelNumber,
@@ -77,12 +77,14 @@ export const create = async (
 
   const newId = insertInfo.insertedId.toString();
 
-  const product = await this.get(newId);
+  const product = await get(newId);
   return product;
-};
+}
 
 
-const getAll = async () => {
+
+
+ export const getAll = async () => {
   const productsCollection = await products();
   let productList = await productsCollection.find({}).toArray();
   if(!productList) throw " Could not get all products"
@@ -91,10 +93,46 @@ const getAll = async () => {
   })
 
   return productList
-};
+}
 
-const get = async (id) => {};
 
-const remove = async (id) => {};
+ export const get = async (id) => {
+  let x = new ObjectId();
+  if (!id) throw 'You must provide an id to search for';
+  if (typeof id !== 'string') throw 'Id must be a string';
+  if (id.trim().length === 0) throw 'Id cannot be an empty string or just spaces';
+  id = id.trim();
+  if (!ObjectId.isValid(id)) throw 'invalid object ID';
+  const productsCollection =await products();
+  const product = await productsCollection.findOne({_id: new ObjectId(id)})
+  if (product === null) throw 'No dog with that id';
+  product._id = product._id.toString();
+  return product;
 
-const rename = async (id, newProductName) => {};
+
+ };
+
+ export const remove = async (id) => {
+  if (!id) throw 'You must provide an id to search for';
+  if (typeof id !== 'string') throw 'Id must be a string';
+  if (id.trim().length === 0) throw 'id cannot be an empty string or just spaces';
+  id = id.trim();
+  if (!ObjectId.isValid(id)) throw 'invalid object ID';
+  const productsCollection = await products();
+  const deletionInfo = await  productsCollection.findOneAndDelete({
+    _id: new ObjectId(id)
+  });
+  if (!deletionInfo) {
+    throw `Could not delete dog with id of ${id}`;
+  }
+  return `${deletionInfo.name} has been deleted.`;
+
+
+
+ };
+
+ rename : async (id, newProductName) => {};
+
+
+
+
