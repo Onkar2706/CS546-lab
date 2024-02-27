@@ -142,11 +142,11 @@ export const  create = async (
     if (typeof newProductName !== 'string') throw 'Name must be a string';
     if (newProductName.trim().length === 0) throw 'Name cannot be an empty string or string with just spaces';
     const productCollection = await products();
-    const product = await productCollection.findOne({ _id: new ObjectId(id.trim()) });
+    const product = await productCollection.findOne({ _id: new ObjectId.createFromHexString(id.trim()) });
     if(!product) throw "product not found"
     if (product.productName === newProductName.trim()) throw "new product name is same "
     const updatedProduct = await productCollection.findOneAndUpdate(
-      { _id: new ObjectId(id.trim()) },
+      { _id: new ObjectId.createFromHexString(id.trim()) },
       { $set: { productName: newProductName.trim() } },
       { returnOriginal: false }
     );
