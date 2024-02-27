@@ -326,5 +326,5 @@ await db.dropDatabase();
 
 })();
 
-//  closeConnection()
+await closeConnection()
 
