@@ -14,7 +14,7 @@ try {
                 "LG",
                 "http://www.philips.com",
                 ['TV', 'Smart TV', 'OLED', 'LG', 'Big Screen', '83 Inch'],
-                ["Electronics", "Television & Video", "Televisions", "OLED TVs"],
+                ["   Electronics  ", "Television & Video", "Televisions", "OLED TVs"],
                 "02/27/2024",
                 false
             );

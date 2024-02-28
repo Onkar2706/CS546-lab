@@ -15,7 +15,7 @@ export const  create = async (
   discontinued
 ) => {
   function validateString(str) {
-      return typeof str === 'string' && str.trim() !== '';
+     return typeof str === 'string' && str.trim() !== '';
   }
 
   function validateArray(arr) {
@@ -23,14 +23,34 @@ export const  create = async (
   }
 
   function validatePrice(price) {
-      if (typeof price !== 'number' ||
-          price <= 0 || 
-          !Number.isFinite(price) ||
-           !/^\d+(\.\d{1,2})?$/.test(price.toString())) {
-            if(Number.isInteger(price)) return true
-          return false;
-      }
-      return true;
+    if(typeof price !== "number" || price < 1 || price === NaN) return false;
+    if (!Number.isInteger(price)){
+      let parts = price.toString().split(".");
+      if(parts[1].length > 2) return false;
+    // return true
+    }
+  //   const priceString = price.toString();
+  //   if (!/^\d*\.?\d{0,2}$/.test(priceString)){
+  //     return false
+  //   }
+
+  //   if (priceString.includes('.')) {
+  //     const [integerPart, fractionalPart] = priceString.split('.');
+  //   }
+  //   if (integerPart && !/^\d+$/.test(integerPart)) {
+  //     return false;
+  //   }
+  //   if ( fractionalPart.length > 2) {
+  //     return false;
+  //   }
+  
+  // else {
+    
+  //   if (!/^\d+$/.test(priceString)) {
+  //       return false;
+  //   }
+  // }
+  return true
   }
 
   function validateManufacturerWebsite(website) {
@@ -48,10 +68,11 @@ export const  create = async (
           return false;
       }
       let sDate= new Date()
+      let userDate = new Date(date) 
       const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[1-2][0-9]|3[0-1])\/\d{4}$/;
       if (!dateRegex.test(date)) return false;
       const [month, day, year] = date.split('/');
-      if(year>=sDate.getFullYear()) return false
+      if(userDate>sDate) return false
       
       const parsedDate = new Date(`${month}/${day}/${year}`);
       return parsedDate && parsedDate.getMonth() == parseInt(month) - 1;
@@ -135,7 +156,7 @@ export const  create = async (
   if (typeof id !== 'string') throw 'Id must be a string';
   if (id.trim().length === 0) throw 'id cannot be an empty string or just spaces';
   id = id.trim();
-  console.log(id)
+ 
   if (!ObjectId.isValid(id)) throw 'invalid object ID';
   
   const productsCollection = await products();
