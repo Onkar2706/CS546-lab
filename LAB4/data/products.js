@@ -23,7 +23,11 @@ export const  create = async (
   }
 
   function validatePrice(price) {
-      if (typeof price !== 'number' || price <= 0 || !Number.isFinite(price) || (price * 100) % 1 !== 0) {
+      if (typeof price !== 'number' ||
+          price <= 0 || 
+          !Number.isFinite(price) ||
+           !/^\d+(\.\d{1,2})?$/.test(price.toString())) {
+            if(Number.isInteger(price)) return true
           return false;
       }
       return true;
@@ -43,9 +47,12 @@ export const  create = async (
       if (!date || typeof date !== 'string') {
           return false;
       }
+      let sDate= new Date()
       const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[1-2][0-9]|3[0-1])\/\d{4}$/;
       if (!dateRegex.test(date)) return false;
       const [month, day, year] = date.split('/');
+      if(year>=sDate.getFullYear()) return false
+      
       const parsedDate = new Date(`${month}/${day}/${year}`);
       return parsedDate && parsedDate.getMonth() == parseInt(month) - 1;
   }
