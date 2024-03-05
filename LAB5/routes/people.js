@@ -25,7 +25,7 @@ router
 .route('/:id')
 .get(async (req, res) => {
     try {
-      const pList = await getPersonById();
+      const pList = await getPersonById(id);
       return res.json(pList.data);
     } catch (e) {
       return res.status(500).send(e);

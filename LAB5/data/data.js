@@ -33,17 +33,23 @@ export const getPeople = async () => {
     return people
 };
 
-const getCompanyById = async (id) => {
+export const getCompanyById = async (id) => {
     id =id.trim()
     if(!id) throw "you must provide valid id"
     if(id !== 'string' || id.trim ==='') throw " not valid"
-    const cIds = cData.find(function(cIds){
+    const cIds = cData.find(function(id){
      return cIds.id === id
  })
 };
 
 export const getPersonById = async (id) => {
-    
-};
+    id =id.trim()
+    if(!id) throw "you must provide valid id"
+    if(id !== 'string' || id.trim ==='') throw " not valid"
+    const pIds = cData.find(function(id){
+     return pIds.id === id
+
+    });
+}
 
 
