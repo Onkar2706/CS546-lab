@@ -12,7 +12,7 @@ router
 .get(async (req, res) => {
     try {
       const cList = await getCompanies();
-      return res.json(cList.data);
+      return res.json(cList);
     } catch (e) {
       return res.status(500).send(e);
     }
@@ -23,12 +23,13 @@ router
 .route('/:id')
 .get(async (req, res) => {
     try {
-      const pList = await getCompanyById();
-      return res.json(pList.data);
+        const cId =req.params.id.trim()
+        // cId=id.trim()
+      const pList = await getCompanyById(cId);
+      return res.json(pList);
     } catch (e) {
-      return res.status(500).send(e);
+      return res.status(404).send(e);
     }
   })
-
 
 export default router;

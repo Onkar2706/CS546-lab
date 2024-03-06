@@ -13,9 +13,9 @@ router
 .get(async (req, res) => {
     try {
       const pList = await getPeople();
-      return res.json(pList.data);
+      return res.json(pList);
     } catch (e) {
-      return res.status(500).send(e);
+      return res.status(400).send(e);
     }
   })
 // Implement GET Request Method and send a JSON response  See lecture code!
@@ -25,10 +25,12 @@ router
 .route('/:id')
 .get(async (req, res) => {
     try {
-      const pList = await getPersonById(id);
-      return res.json(pList.data);
+        const cId =req.params.id.trim()
+        // cId=id.trim()
+      const pList = await getPersonById(cId);
+      return res.json(pList);
     } catch (e) {
-      return res.status(500).send(e);
+      return res.status(404).json(e);
     }
   })
 // Implement GET Request Method and send a JSON response See lecture code!
