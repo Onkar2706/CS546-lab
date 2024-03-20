@@ -120,7 +120,7 @@ export const  create = async (
 }
 
 export const getAll = async () => {
-  const productsCollection = await products();
+  const productsCollection = await posts();
   let productList = await productsCollection.find({}).toArray();
   if(!productList) throw " Could not get all products"
   productList = productList.map((element)=>{
@@ -141,7 +141,7 @@ export const get = async (id) => {
   if (id.trim().length === 0) throw 'Id cannot be an empty string or just spaces';
   id = id.trim();
   if (!ObjectId.isValid(id)) throw 'invalid object ID';
-  const productsCollection =await products();
+  const productsCollection =await posts();
   const product = await productsCollection.findOne({_id: new ObjectId(id)})
   if (product === null) throw 'No product with that id';
   product._id = product._id.toString();
@@ -150,18 +150,46 @@ export const get = async (id) => {
 
  };
 
-const remove = async (productId) => {};
+ export const remove = async (id) => {
+  if (!id) throw 'You must provide an id to search for';
+  if (typeof id !== 'string') throw 'Id must be a string';
+  if (id.trim().length === 0) throw 'id cannot be an empty string or just spaces';
+  id = id.trim();
+ 
+  if (!ObjectId.isValid(id)) throw 'invalid object ID';
+  
+  const productsCollection = await products();
+  const deletionInfo = await productsCollection.findOneAndDelete({
+    _id: new ObjectId(id)
+  });
 
-const update = async (
-  productId,
-  productName,
-  productDescription,
-  modelNumber,
-  price,
-  manufacturer,
-  manufacturerWebsite,
-  keywords,
-  categories,
-  dateReleased,
-  discontinued
-) => {};
+  if (!deletionInfo) {
+    throw `Could not delete product with id of ${id}`;
+  }
+
+  return `${deletionInfo.productName} has been successfully deleted!`;
+};
+
+const update = async (id, newProductName) => {
+  if (!id) throw 'You must provide an id to search for';
+  if (typeof id !== 'string') throw 'Id must be a string';
+  if (id.trim().length === 0) throw 'Id cannot be an empty string or just spaces';
+  id = id.trim();
+  if (!ObjectId.isValid(id)) throw 'invalid object ID';
+  if (!newProductName) throw 'You must provide a new product name';
+  if (typeof newProductName !== 'string') throw 'New product name must be a string';
+  if (newProductName.trim().length === 0) throw 'New product name cannot be an empty string or string with just spaces';
+  
+  const productsCollection = await posts();
+  const updatedProduct = await productsCollection.findOneAndUpdate(
+    { _id: new ObjectId(id) },
+    { $set: { productName: newProductName.trim() } },
+    { returnDocument: "after" }
+  );
+
+  if (!updatedProduct) {
+    throw "Product not updated";
+  }
+  //const updated = await get(id)
+  return updatedProduct
+};;
