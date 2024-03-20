@@ -1,5 +1,5 @@
 // This file should set up the express server as shown in the lecture code
-import { create,get,getAll,} from './data/products.js';
+import { create,get,getAll} from './data/products.js';
 import { dbConnection, closeConnection } from './config/mongoConnection.js';
 
 const db = await dbConnection();
@@ -39,23 +39,7 @@ try {
 }
 
 
-try {
 
-  console.log(await rename('65de2d223964744ed568a1de','TV2'))
-  
-} catch (error) {
-  console.log(error)
-  
-}
-
-
-try {
-  console.log(await remove('65de2d223964744ed568a1de'))
-  
-} catch (error) {
-  console.log(error)
-  
-}
 
 
 

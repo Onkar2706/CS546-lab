@@ -170,7 +170,7 @@ export const get = async (id) => {
   return `${deletionInfo.productName} has been successfully deleted!`;
 };
 
-const update = async (id, newProductName) => {
+export const update = async (id, newProductName) => {
   if (!id) throw 'You must provide an id to search for';
   if (typeof id !== 'string') throw 'Id must be a string';
   if (id.trim().length === 0) throw 'Id cannot be an empty string or just spaces';
