@@ -1,4 +1,6 @@
 // This data file should export all functions using the ES6 standard as shown in the lecture code
+import {posts} from '../config/mongoCollections.js';
+import {ObjectId} from 'mongodb';
 
 export const  create = async (
   productName,
@@ -10,7 +12,8 @@ export const  create = async (
   keywords,
   categories,
   dateReleased,
-  discontinued
+  discontinued,
+  
 ) => {
   function validateString(str) {
      return typeof str === 'string' && str.trim() !== '';
@@ -100,10 +103,12 @@ export const  create = async (
       keywords: keywords.map(keyword => keyword.trim()),
       categories: categories.map(category => category.trim()),
       dateReleased: dateReleased.trim(),
-      discontinued: discontinued
+      discontinued: discontinued,
+      reviews:[],
+      averageRating:0
   };
 
-  const productsCollection = await products();
+  const productsCollection = await posts();
   const insertInfo = await productsCollection.insertOne(newProduct);
   
   if (!insertInfo.acknowledged || !insertInfo.insertedId) throw "product not added"
@@ -114,9 +119,36 @@ export const  create = async (
   return product;
 }
 
-const getAll = async () => {};
+export const getAll = async () => {
+  const productsCollection = await products();
+  let productList = await productsCollection.find({}).toArray();
+  if(!productList) throw " Could not get all products"
+  productList = productList.map((element)=>{
 
-const get = async (productId) => {};
+    element._id = element._id.toString()
+    //console.log(element._id)
+    return element;
+  })
+  //console.log(productList)
+
+  return productList
+}
+
+export const get = async (id) => {
+  //let x = new ObjectId();
+  if (!id) throw 'You must provide an id to search for';
+  if (typeof id !== 'string') throw 'Id must be a string';
+  if (id.trim().length === 0) throw 'Id cannot be an empty string or just spaces';
+  id = id.trim();
+  if (!ObjectId.isValid(id)) throw 'invalid object ID';
+  const productsCollection =await products();
+  const product = await productsCollection.findOne({_id: new ObjectId(id)})
+  if (product === null) throw 'No product with that id';
+  product._id = product._id.toString();
+  return product;
+
+
+ };
 
 const remove = async (productId) => {};
 
