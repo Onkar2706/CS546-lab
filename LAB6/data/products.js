@@ -1,6 +1,9 @@
 // This data file should export all functions using the ES6 standard as shown in the lecture code
 import {posts} from '../config/mongoCollections.js';
 import {ObjectId} from 'mongodb';
+import { validateObjectId,validateArray,validateString,validatePrice,validateManufacturerWebsite,validateDate } from '../helpers.js';
+
+
 
 export const  create = async (
   productName,
@@ -127,7 +130,10 @@ export const getAll = async () => {
 
     element._id = element._id.toString()
     //console.log(element._id)
-    return element;
+    return {
+      _id:element._id.toString(),
+      productName:element.productName
+    };
   })
   //console.log(productList)
 
@@ -158,7 +164,7 @@ export const get = async (id) => {
  
   if (!ObjectId.isValid(id)) throw 'invalid object ID';
   
-  const productsCollection = await products();
+  const productsCollection = await posts();
   const deletionInfo = await productsCollection.findOneAndDelete({
     _id: new ObjectId(id)
   });
@@ -170,26 +176,62 @@ export const get = async (id) => {
   return `${deletionInfo.productName} has been successfully deleted!`;
 };
 
-export const update = async (id, newProductName) => {
-  if (!id) throw 'You must provide an id to search for';
-  if (typeof id !== 'string') throw 'Id must be a string';
-  if (id.trim().length === 0) throw 'Id cannot be an empty string or just spaces';
-  id = id.trim();
-  if (!ObjectId.isValid(id)) throw 'invalid object ID';
-  if (!newProductName) throw 'You must provide a new product name';
-  if (typeof newProductName !== 'string') throw 'New product name must be a string';
-  if (newProductName.trim().length === 0) throw 'New product name cannot be an empty string or string with just spaces';
-  
+export const update = async (id, newProductName, productDescription,modelNumber,price,manufacturer,manufacturerWebsite,keywords,categories,dateReleased,discontinued) => {
+
+  newProductName = newProductName.trim();
+  productDescription = productDescription.trim();
+  modelNumber = modelNumber.trim();
+  price=price
+  manufacturer = manufacturer.trim();
+  keywords: keywords.map(keyword => keyword.trim());
+  categories: categories.map(category => category.trim()),
+  manufacturerWebsite = manufacturerWebsite.trim();
+  dateReleased = dateReleased.trim();
+  discontinued =discontinued
+
+
+  if (!id || !newProductName || !productDescription || !modelNumber || !price || !manufacturer || !manufacturerWebsite || !keywords || !categories || !dateReleased || typeof discontinued !== 'boolean') {
+    throw new Error("Enter valid values");
+  }
+
+
+   
+
+
+  if (
+    !validateObjectId(id)||
+    !validateString(newProductName) ||
+    !validateString(productDescription) ||
+    !validateString(modelNumber) ||
+    !validatePrice(price) ||
+    !validateString(manufacturer) ||
+    !validateManufacturerWebsite(manufacturerWebsite) ||
+    !validateArray(keywords) ||
+    !validateArray(categories) ||
+    !validateDate(dateReleased) ||
+    typeof discontinued !== 'boolean'
+  ) throw "error thrown"
+
   const productsCollection = await posts();
   const updatedProduct = await productsCollection.findOneAndUpdate(
     { _id: new ObjectId(id) },
-    { $set: { productName: newProductName.trim() } },
+    { $set: { productName: newProductName.trim(),
+        productDescription:productDescription.trim(),
+        modelNumber:modelNumber.trim(),
+        price:price,
+        manufacturer:manufacturer.trim(),
+        manufacturerWebsite:manufacturerWebsite.trim(),
+        keywords:keywords.map(keyword => keyword.trim()),
+        categories: categories.map(category => category.trim()),
+        manufacturerWebsite : manufacturerWebsite.trim(),
+        dateReleased : dateReleased.trim(),
+        discontinued : discontinued
+      } },
     { returnDocument: "after" }
   );
-
-  if (!updatedProduct) {
-    throw "Product not updated";
-  }
-  //const updated = await get(id)
+    
   return updatedProduct
-};;
+};
+
+
+
