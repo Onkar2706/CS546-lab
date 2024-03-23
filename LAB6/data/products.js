@@ -3,9 +3,9 @@ import {posts} from '../config/mongoCollections.js';
 import {ObjectId} from 'mongodb';
 import { validateObjectId,validateArray,validateString,validatePrice,validateManufacturerWebsite,validateDate } from '../helpers.js';
 
+const exportMethods = {
 
-
-export const  create = async (
+async create(
   productName,
   productDescription,
   modelNumber,
@@ -17,7 +17,7 @@ export const  create = async (
   dateReleased,
   discontinued,
   
-) => {
+){
   function validateString(str) {
      return typeof str === 'string' && str.trim() !== '';
   }
@@ -118,11 +118,11 @@ export const  create = async (
 
   const newId = insertInfo.insertedId.toString();
 
-  const product = await get(newId);
+  const product = await this.get(newId);
   return product;
-}
+},
 
-export const getAll = async () => {
+async getAll() {
   const productsCollection = await posts();
   let productList = await productsCollection.find({}).toArray();
   if(!productList) throw " Could not get all products"
@@ -138,9 +138,9 @@ export const getAll = async () => {
   //console.log(productList)
 
   return productList
-}
+},
 
-export const get = async (id) => {
+async get(id){
   //let x = new ObjectId();
   if (!id) throw 'You must provide an id to search for';
   if (typeof id !== 'string') throw 'Id must be a string';
@@ -154,9 +154,9 @@ export const get = async (id) => {
   return product;
 
 
- };
+ },
 
- export const remove = async (id) => {
+ async remove(id) {
   if (!id) throw 'You must provide an id to search for';
   if (typeof id !== 'string') throw 'Id must be a string';
   if (id.trim().length === 0) throw 'id cannot be an empty string or just spaces';
@@ -173,11 +173,12 @@ export const get = async (id) => {
     throw `Could not delete product with id of ${id}`;
   }
 
-  return `${deletionInfo.productName} has been successfully deleted!`;
-};
+  return {_id: id, deleted: true};
+},
 
-export const update = async (id, newProductName, productDescription,modelNumber,price,manufacturer,manufacturerWebsite,keywords,categories,dateReleased,discontinued) => {
+async update(id, newProductName, productDescription,modelNumber,price,manufacturer,manufacturerWebsite,keywords,categories,dateReleased,discontinued) {
 
+  _id: new ObjectId(id);
   newProductName = newProductName.trim();
   productDescription = productDescription.trim();
   modelNumber = modelNumber.trim();
@@ -231,7 +232,11 @@ export const update = async (id, newProductName, productDescription,modelNumber,
   );
     
   return updatedProduct
+}
+
 };
+
+export default exportMethods;
 
 
 

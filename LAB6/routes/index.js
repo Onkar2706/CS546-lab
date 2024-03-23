@@ -7,11 +7,11 @@
 */
 
 import productRoutes from './products.js';
-//import reviewsRoutes from './reviews.js';
+import reviewsRoutes from './reviews.js';
 
 const constructorMethod = (app) => {
   app.use('/products', productRoutes);
- // app.use('/reviews', reviewsRoutes);
+ app.use('/reviews', reviewsRoutes);
 
   app.use('*', (req, res) => {
     return res.status(404).json({error: 'Not found'});

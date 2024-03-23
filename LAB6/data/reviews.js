@@ -1,19 +1,23 @@
 // This data file should export all functions using the ES6 standard as shown in the lecture code
 import {posts} from '../config/mongoCollections.js';
 import {ObjectId} from 'mongodb';
-import { get } from './products.js';
+// import exportMethods, { get } from './products.js';
+import { pm } from './index.js';
+// import { avgRating } from '../helpers.js';
 //import { reviews } from '../config/mongoCollections.js';
 
-import { validateObjectId,validateArray,validateString,validatePrice,validateManufacturerWebsite,validateDate,validateRating } from '../helpers.js';
+import { validateObjectId,validateArray,validateString,validatePrice,validateManufacturerWebsite,validateDate,validateRating, avgRating } from '../helpers.js';
+
+const exportMethods ={
 
 
-export const createReview = async (
+async createReview  (
   productId,
   title,
   reviewerName,
   review,
   rating
-) => {
+)  {
 
   if (
     !validateString(productId) ||
@@ -38,7 +42,7 @@ export const createReview = async (
 
     const newReview = ({
       _id: new ObjectId(),
-      productId:productId,
+      // productId:productId,
       title:title,
       reviewerName:reviewerName,
       review:review,
@@ -68,16 +72,22 @@ export const createReview = async (
     //   { _id: new ObjectId(productId) },
     //   // { $set: { averageRating } }
     // );
+    const arating = avgRating(updatedProduct.reviews)
+    const updatedProductAvg = await productsCollection.findOneAndUpdate(
+      { _id: new ObjectId(productId) },
+      { $set: { averageRating: arating } },
+      { returnDocument: 'after' }
+  );
 
-  return updatedProduct;
+  return updatedProductAvg;
 
 
 
   
-};
+},
 
-export const getAllReviews = async (productId) => {
-  if(!productId || !validateString(productId) || !validateObjectId(productId) || productId.trim().length) throw "enter valid productId"
+async getAllReviews  (productId) {
+  if(!productId || !validateString(productId) || !validateObjectId(productId) || productId.trim().length === 0) throw "enter valid productId"
 
   const productsCollection = await posts();
 
@@ -100,9 +110,9 @@ export const getAllReviews = async (productId) => {
 
 
 
-};
+},
 
-export const getReview = async (reviewId) => {
+async getReview (reviewId) {
 
   if (!reviewId ||  reviewId.trim().length === 0 || !validateObjectId(reviewId)  || !validateString(reviewId)) throw "Please provide REVIEW ID";
   const productsCollection = await posts();
@@ -124,41 +134,106 @@ export const getReview = async (reviewId) => {
     
   }
   
-};
+},
 
-const updateReview = async (reviewId, updateObject) => {};
-
-export const removeReview = async (reviewId) => {
+async updateReview  (reviewId, updateObject)  {
 
   if (!reviewId ||  reviewId.trim().length === 0 || !validateObjectId(reviewId)  || !validateString(reviewId)) throw "Please provide REVIEW ID";
+  if (!ObjectId.isValid(reviewId)) throw 'Invalid reviewId';
+
+  
+
+
+  if (updateObject.title && (!validateString(updateObject.title) || updateObject.title.trim() === '')) throw new Error('Title must be string');
+  
+  if (updateObject.reviewerName && (!validateString(updateObject.reviewerName) || updateObject.reviewerName.trim() === '')) throw new Error('ReviewerName string');
+  
+  if (updateObject.review && (!validateString(updateObject.review) || updateObject.review.trim() === '')) throw 'Review must be a string';
+  
+  if (updateObject.rating !== undefined) {
+    if (!validateRating(updateObject.rating)) throw 'rating not available';
+    }
+
+
+    const productsCollection = await posts();
+    const oldReviewID = await productsCollection.findOne({ 'reviews._id': new ObjectId(reviewId) });
+    if (!oldReviewID) throw 'No product review found ';
+    const productId = oldReviewID._id.toString()
+
+
+
+
+    const oldReview = await this.getReview(reviewId)
+    if(!oldReview) throw "Review not avaoilable"
+
+
+    const updateReview ={...oldReview,...updateObject}
+
+    const updatedReview = await productsCollection.findOneAndUpdate(
+      {'reviews._id': new ObjectId(reviewId)},
+      {$set:{'reviews.$.title':updateReview.title.trim(),'reviews.$.reviewDate':updateReview.reviewDate.trim(),'reviews.$.reviewerName':updateReview.reviewerName.trim(),'reviews.$.review':updateReview.review.trim(), 'reviews.$.rating': updateReview.rating}},
+      {returnDocument:'after'}
+    )
+
+    if(!updatedReview) throw ("unable to update product")
+
+
+    const arating = avgRating(updatedReview.reviews)
+   const updatedProductAvg = await productsCollection.findOneAndUpdate(
+    { _id: new ObjectId(productId) },
+    { $set: { averageRating: arating } },
+    { returnDocument: 'after' }
+
+  
+);
+
+
+
+
+ return updatedProductAvg
+
+
+    
+    
+
+},
+
+async removeReview  (reviewId)  {
+
+  if (!reviewId ||  reviewId.trim().length === 0 || !validateString(reviewId) || !validateObjectId(reviewId)) throw "Please provide REVIEW ID";
   const productsCollection = await posts();
 
   const product = await productsCollection.findOne({ 'reviews._id': new ObjectId(reviewId) });
   if (!product) throw 'No product available';
-
-  const returnedProduct = await productsCollection.findOne({'reviews._id':new ObjectId(reviewId)});
-  const pid = returnedProduct._id.toString();
+  const pid = product._id.toString();
 
 
-  const updatedProduct = await productsCollection.updateOne(
-    { 'reviews._id': new ObjectId(reviewId) },
-    { $pull: { reviews: { _id: new ObjectId(reviewId) } } },
-    { returnDocument: 'after' }
-  );
-  // const returnedProduct = await productsCollection.findOne(review)
+  const deleteProd = await productsCollection.updateOne({
+    _id:new ObjectId(pid)},
+    {$pull: {reviews:{_id: new ObjectId(reviewId)}}});
+    if(!deleteProd) throw "Error: cannot delete review";
+
+
+  // reviewDate: new Date().toLocaleDateString()
+
+
+  
 
 
 
     
-  return await get(pid)
-  
+  const pInfo = await pm.get(pid)
+  const arating = avgRating(pInfo.reviews)
+  const updatedProductAvg = await productsCollection.findOneAndUpdate(
+    { _id: new ObjectId(pid) },
+    { $set: { averageRating: arating } },
+    { returnDocument: 'after' }
+);
 
-
-  
-
-
-
+return updatedProductAvg;  
+}
 };
+export default exportMethods; 
 
 
 

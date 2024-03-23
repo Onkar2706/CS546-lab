@@ -15,27 +15,7 @@ export function validatePrice(price) {
      if(parts[1].length > 2) return false;
    // return true
    }
- //   const priceString = price.toString();
- //   if (!/^\d*\.?\d{0,2}$/.test(priceString)){
- //     return false
- //   }
-
- //   if (priceString.includes('.')) {
- //     const [integerPart, fractionalPart] = priceString.split('.');
- //   }
- //   if (integerPart && !/^\d+$/.test(integerPart)) {
- //     return false;
- //   }
- //   if ( fractionalPart.length > 2) {
- //     return false;
- //   }
  
- // else {
-   
- //   if (!/^\d+$/.test(priceString)) {
- //       return false;
- //   }
- // }
  return true
  }
 
@@ -84,14 +64,21 @@ export function validatePrice(price) {
 
 
  export function avgRating(rating){
-    // let totalRating = 0;
-    
-    // for (const review of updatedProduct.value.reviews){
-    //       totalRating += review.rating;
-    // }
+    if (rating.length === 0) return 0;
+    let result = 0
+    for (let index = 0; index < rating.length; index++) {
+        const element = rating[index]["rating"];
+        result+=element
 
-    // const averageRating = totalRating / updatedProduct.value.review.length;
-    // const filter = { _id: new ObjectId(productId) };
-    // update = { $set: { averageRating } };
-    // await productsCollection.updateOne(filter, update);
+        
+        
+    }
+
+
+    const average = result/rating.length
+    let finalAvg = average.toFixed(1);
+    finalAvg = parseFloat(finalAvg);
+
+    
+    return finalAvg
  }
