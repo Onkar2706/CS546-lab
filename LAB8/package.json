@@ -1,7 +1,7 @@
 {
-  "name": "cs-546-lab-3",
+  "name": "cs-546-lab-8",
   "version": "1.0.0",
-  "description": "My lab 3 module",
+  "description": "My lab 8 module",
   "main": "app.js",
   "type": "module",
   "publishConfig": {
