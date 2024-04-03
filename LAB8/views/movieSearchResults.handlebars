@@ -11,3 +11,16 @@ The title of the document should be "Movies Found". You should have the title se
     least 5 of them on this page.
 
     }}
+
+
+    <h1>{{title}}</h1>
+<h2>{{term}}</h2>
+<main>
+  <ol>
+    {{#each movies}}
+    <li> <a href="/movie/{{imdbID}}">{{Title}} <br>
+     <img class="searchResultImage" alt= {{Title}} src={{Poster}}></a>
+    {{/each}}
+  </ol>
+</main>
+<a class="new" href="/">Make another search</a>
