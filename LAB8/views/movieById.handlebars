@@ -6,6 +6,114 @@ The title of the document should be the name of the Movie. You should have the t
     Your page should reference a CSS file, /public/css/styles.css; his file should have at least 10 rulesets you must
     use at
     least 5 of them on this page.
+ }}
+
+{{!-- <article>
+  <h1>{{movies.Title}}</h1>
+  <img alt={{movies.Title}} src={{movies.Poster}}>
+
+  <h2>Plot</h2>
+  <p>{{movies.Plot}}</p>
+  <section>
+    <h3>Info</h3>
+    <dl>
+      <dt>Year Released:</dt>
+        <dd>{{movies.Year}}</dd>
+      <dt>Rated:</dt>
+        <dd>{{movies.Rated}}</dd>
+      <dt>Runtime:</dt>
+        <dd>{{movies.Runtime}}</dd>
+      <dt>Genre(s):</dt>
+        <dd>{{movies.Genre}}</dd>
+      <dt>Box Office Earnings:</dt>
+        <dd>{{movies.BoxOffice}}</dd>
+      <dt>DVD Release Date:</dt>
+        <dd>{{movies.Release}}</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h4>Cast and Crew</h4>
+    <p><strong>Director:</strong> {{movies.Director}}</p>
+    <p><strong>Writer:</strong> {{movies.Writer}}</p>
+    <p><strong>Cast:</strong> {{movies.Actors}}</p>
+  </section>
+  
+  <section>
+  <h4>Ratings</h4>
+  <table>
+    <thead>
+      <tr>
+        <th>Source</th>
+        <th>Rating</th>
+      </tr>
+    
+      {{#each  movies.Ratings}}
+        <tr>
+          <td>{{ Source }}</td>
+          <td>{{ Value }}</td>
+        </tr>
+      {{/each}}
+    
+  </table>
+</section>
+
+  <a href="/">Search for Another Movies</a>
+
+</article> --}}
 
 
-    }}
+
+<article>
+  <h1>{{movies.Title}}</h1>
+  <img alt="{{movies.Title}}" src="{{movies.Poster}}">
+
+  <h2>Plot</h2>
+  <p>{{movies.Plot}}</p>
+  <section>
+    <h3>Info</h3>
+    <dl>
+      <dt>Year Released:</dt>
+      <dd>{{movies.Year}}</dd>
+      <dt>Rated:</dt>
+      <dd>{{movies.Rated}}</dd>
+      <dt>Runtime:</dt>
+      <dd>{{movies.Runtime}}</dd>
+      <dt>Genre(s):</dt>
+      <dd>{{movies.Genre}}</dd>
+      <dt>Box Office Earnings:</dt>
+      <dd>{{movies.BoxOffice}}</dd>
+      <dt>DVD Release Date:</dt>
+      <dd>{{movies.Release}}</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h4>Cast and Crew</h4>
+    <p><strong>Director:</strong> {{movies.Director}}</p>
+    <p><strong>Writer:</strong> {{movies.Writer}}</p>
+    <p><strong>Cast:</strong> {{movies.Actors}}</p>
+  </section>
+  
+  <section>
+    <h4>Ratings</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Source</th>
+          <th>Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each movies.Ratings}}
+        <tr>
+          <td>{{this.Source}}</td>
+          <td>{{this.Value}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </section>
+
+  <a href="/">Search for Another Movie</a>
+</article>

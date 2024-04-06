@@ -9,24 +9,25 @@ const router = express.Router();
 router.route('/')
 .get(async (req, res) => {
   //code here for GET will render the home handlebars file
-  res.render('home')
+  res.render('home',{title:"Movie Finder"})
 });
 
 router.route('/searchmovies').post(async (req, res) => {
   //code here for POST this is where your form will be submitting searchMoviesByName and then call your data function passing in the searchMoviesByName and then rendering the search results of up to 20 Movies.
   const term = req.body.searchMoviesByName;
   // POST http://localhost:3000/search
-  if (term.trim().length == 0) {
-    res.status(400).render('errors', { class: "error", message: "Search term keyword must be a non-empty string." });
+  if (term.trim().length === 0) {
+    res.status(400).render('error', { class: "error", message: "Search term keyword must be a non-empty string." });
     return;
   }
   
     // try to either render error HTML page if not found OR return the search results 
     try {
       const movies = await searchMoviesByName(term);
+      
       res.render('movieSearchResults', { title: "Movies Found", searchMoviesByName: term, movies })
   } catch (e) {
-      res.status(500).json({ error: e });
+      res.status(404).render('error', { class: "error", message: "Movie not Found" });;
   }
 });
 
@@ -34,21 +35,20 @@ router.route('/searchmovies').post(async (req, res) => {
 // GET http://localhost:3000/shows/{id}
 router.route('/movie/:id').get(async (req, res) => {
   //code here for GET a single movie
-  const id = req.params.id;
+  let id = req.params.id;
+  id = id.trim()
   if (!id) { // check if id is given
     res.status(400).render({ class: "error", message: "No valid id is given." });
     return;
 }
-if (isNaN(id)) { // check if id is not a number
-    res.status(400).render({ class: "error", message: "No valid id is given." });
-    return;
-}
+
 try { // try to look for show by id
-    const { data } = await axios.get(`http://www.omdbapi.com/?apikey=CS546&s=${title}`);
-    res.render('views/movieById', { title: data.name, movieInfo: data, summary: data.summary.replace(/(<([^>]+)>)/ig, '') });
-    //trim HTML tags: found on GeeksforGeeks (https://www.geeksforgeeks.org/how-to-strip-out-html-tags-from-a-string-using-javascript/#:~:text=To%20strip%20out%20all%20the,innerText%20property%20from%20HTML%20DOM.)
+  id = id.trim()
+  const movies = await searchMovieById(id);
+    res.render('movieById', { title: `${movies.Title}`, movies })
+    
 } catch (e) { // error 404 - no show found
-    res.status(404).render('pages/errors', { class: "error", message: "No show found for given id." });
+    res.status(404).render('error', { class: "error", message: "No show found for given id." });
 }
 });
 
