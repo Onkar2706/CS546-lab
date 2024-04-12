@@ -335,35 +335,35 @@ if (myForm) {
       "<dd>" +
       inputText +
       "</dd>" +
-      "<dt>Total Number of Letters:</dt>" +
+      "<dt>Total Number of Letters</dt>" +
       "<dd>" +
       totalLetters +
       "</dd>" +
-      "<dt>Total Number of Non-Letters:</dt>" +
+      "<dt>Total Number of Non-Letters</dt>" +
       "<dd>" +
       nonLetters +
       "</dd>" +
-      "<dt>Total Number of Vowels:</dt>" +
+      "<dt>Total Number of Vowels</dt>" +
       "<dd>" +
       totalVowels +
       "</dd>" +
-      "<dt>Total Number of Consonants:</dt>" +
+      "<dt>Total Number of Consonants</dt>" +
       "<dd>" +
       totalConsonants +
       "</dd>" +
-      "<dt>Total Number of Words:</dt>" +
+      "<dt>Total Number of Words</dt>" +
       "<dd>" +
       totalWords +
       "</dd>" +
-      "<dt>Total Number of Unique Words:</dt>" +
+      "<dt>Total Number of Unique Words</dt>" +
       "<dd>" +
       totalUniqueWords +
       "</dd>" +
-      "<dt>Total Number of Long Words:</dt>" +
+      "<dt>Total Number of Long Words</dt>" +
       "<dd>" +
       longWords +
       "</dd>" +
-      "<dt>Total Number of Short Words:</dt>" +
+      "<dt>Total Number of Short Words</dt>" +
       "<dd>" +
       shortWords +
       "</dd>" +
