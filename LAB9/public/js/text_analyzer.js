@@ -197,3 +197,180 @@ If the user does not have a value for the input when they submit, you should not
 
 The form should reset itself every time after an input has been processed.
 */
+
+let myForm = document.getElementById("text_analysis_form");
+let textInput = document.getElementById("text_to_analyze");
+let errorDiv = document.getElementById("error");
+let myUl = document.getElementById("list");
+let frmLabel = document.getElementById("text_analysis_form");
+
+if (myForm) {
+  myForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    let inputText = textInput.value.trim().toLowerCase();
+
+    if (!inputText || inputText === undefined) {
+      errorDiv.innerHTML = "Input should not be empty, please enter something!";
+      //   errorDiv. = true;
+      return;
+    }
+
+    let nonLetters = 0;
+    let totalLetters = 0;
+    let totalVowels = 0;
+    let totalConsonants = 0;
+    let totalWords = 0;
+    let totalUniqueWords = 0;
+    let longWords = 0;
+    let shortWords = 0;
+
+    
+    for (let i = 0; i < inputText.length; i++) {
+      let char = inputText[i].toLowerCase();
+      if (char >= "a" && char <= "z") {
+        totalLetters++;
+        if (
+          char === "a" || char === "e" || char === "i" || char === "o" || char === "u"
+        ) {
+          totalVowels++;
+        } else {
+          totalConsonants++;
+        }
+      } else {
+        nonLetters++;
+      }
+    }
+
+    let words = inputText.split(/\W+/);
+    totalWords = words.filter((word) => isNaN(word)).length; 
+
+    
+    let uniqueWords = {};
+    for (let i = 0; i < words.length; i++) {
+      let word = words[i].toLowerCase();
+      if (!isNaN(word)) continue;
+      uniqueWords[word] = true;
+    }
+    totalUniqueWords = countUniqueWords(uniqueWords);
+
+    
+    for (let i = 0; i < words.length; i++) {
+      if (isNaN(words[i])) {
+        
+        if (words[i].length >= 6) {
+          longWords++;
+        } else if (words[i].length <= 3) {
+          shortWords++;
+        }
+      }
+    }
+
+    
+    function countUniqueWords(uniqueWords) {
+      let count = 0;
+      for (let word in uniqueWords) {
+        if (uniqueWords.hasOwnProperty(word)) {
+          count++;
+        }
+      }
+      return count;
+    }
+
+    // let nonLetters = 0;
+    // let totalLetters = 0;
+    // let totalVowels = 0;
+    // let totalConsonants = 0;
+    // let totalWords = 0;
+    // let totalUniqueWords = 0;
+    // let longWords = 0;
+    // let shortWords = 0;
+
+    // // Counting statistics
+    // for (let i = 0; i < inputText.length; i++) {
+    //   let char = inputText[i].toLowerCase();
+    //   if (char >= "a" && char <= "z") {
+    //     totalLetters++;
+    //     if (
+    //       char === "a" ||
+    //       char === "e" ||
+    //       char === "i" ||
+    //       char === "o" ||
+    //       char === "u"
+    //     ) {
+    //       totalVowels++;
+    //     } else {
+    //       totalConsonants++;
+    //     }
+    //   } else {
+    //     nonLetters++;
+    //   }
+    // }
+
+    // let words = inputText.split(/\W+/);
+    // totalWords = words.length;
+
+    // // Counting unique words
+    // let uniqueWords = {};
+    // for (let i = 0; i < words.length; i++) {
+    //   let word = words[i].toLowerCase();
+    //   if (!uniqueWords[word]) {
+    //     uniqueWords[word] = true;
+    //   }
+    // }
+    // totalUniqueWords = Object.keys(uniqueWords).length;
+
+    // // Counting long and short words
+    // for (let i = 0; i < words.length; i++) {
+    //   if (words[i].length >= 6) {
+    //     longWords++;
+    //   } else if (words[i].length <= 3) {
+    //     shortWords++;
+    //   }
+    // }
+
+    let outputHTML =
+      "<dl>" +
+      "<dt>Original Input:</dt>" +
+      "<dd>" +
+      inputText +
+      "</dd>" +
+      "<dt>Total Number of Letters:</dt>" +
+      "<dd>" +
+      totalLetters +
+      "</dd>" +
+      "<dt>Total Number of Non-Letters:</dt>" +
+      "<dd>" +
+      nonLetters +
+      "</dd>" +
+      "<dt>Total Number of Vowels:</dt>" +
+      "<dd>" +
+      totalVowels +
+      "</dd>" +
+      "<dt>Total Number of Consonants:</dt>" +
+      "<dd>" +
+      totalConsonants +
+      "</dd>" +
+      "<dt>Total Number of Words:</dt>" +
+      "<dd>" +
+      totalWords +
+      "</dd>" +
+      "<dt>Total Number of Unique Words:</dt>" +
+      "<dd>" +
+      totalUniqueWords +
+      "</dd>" +
+      "<dt>Total Number of Long Words:</dt>" +
+      "<dd>" +
+      longWords +
+      "</dd>" +
+      "<dt>Total Number of Short Words:</dt>" +
+      "<dd>" +
+      shortWords +
+      "</dd>" +
+      "</dl>";
+
+    document.getElementById("text_output").innerHTML += outputHTML;
+
+    event.target.reset();
+  });
+}

@@ -11,3 +11,50 @@ A textarea element with a name and id attribute of text_to_analyze
 A button to submit the form
 
  -->
+
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Analysis Tool</title>
+    <link rel="stylesheet" href="../public/css/styles.css">
+
+</head>
+<body>
+
+    <header>
+        <h1>Text Analysis Tool</h1>
+    </header>
+    <!-- <div id="error"  ></div> -->
+<!-- 
+    <div id="text_output">
+        
+    </div> -->
+
+    <form id="text_analysis_form" method="POST">
+        <label for="text_to_analyze">Enter Text</label><br>
+        <textarea name="text_to_analyze" id="text_to_analyze" rows="5" cols="50"></textarea><br>
+        <button type="submit">Submit</button>
+    </form>
+
+
+    <div id="text_output">
+    
+        
+    </div>
+    <div id="error"  ></div>
+
+    <script src = "../public/js/text_analyzer.js"></script>
+
+    <footer>
+       
+    
+        <p>Name: Onkar Mahamuni</p>
+        <p>Student ID: 20022743</p>
+        
+    </footer>
+</body>
+</html>
