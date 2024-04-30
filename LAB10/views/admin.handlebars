@@ -11,6 +11,7 @@ based on the specs.
 
 
 
+<<<<<<< HEAD
     <div id="userView">
         <p id="welcome">Welcome {{firstName}} {{lastName}}, the time is now: {{currentTime}}. You get super secret admin access since you are an admin. Remember, with great power comes great responsibility!!: {{role}}."</p>
         <p id="quote">Favorite Quote: {{favoriteQuote}}</p>
@@ -20,3 +21,15 @@ based on the specs.
         <a id="userLink" href="/User">User Page</a>
         <a id="logoutLink" href="/logout">Logout</a>
     </div>
+=======
+<div id="userView">
+    <p id="welcome">Welcome {{firstName}} {{lastName}}, the time is now: {{currentTime}}. You get super secret admin access since you are an admin. Remember, with great power comes great responsibility!!: {{role}}."</p>
+    <p id="quote">Favorite Quote: {{favoriteQuote}}</p>
+    <link rel="stylesheet" href="/public/css/styles.css">
+    {{!-- {{#if role "===" "admin"}}
+        <a id="adminLink" href="/admin">Admin Page</a>
+    {{/if}} --}}
+    <a id="userLink" href="/User">User Page</a>
+    <a id="logoutLink" href="/logout">Logout</a>
+</div>
+>>>>>>> 0d3355ced6040c6b207b2b85f646fda1a0ac561d

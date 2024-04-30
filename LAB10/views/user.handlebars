@@ -3,6 +3,7 @@
 If the user is logged in , and 'GET /user' endpoint is called, you will render this view based on the specs.
 
 --}}
+<<<<<<< HEAD
 
     <div id="userView">
         <p id="welcome">Welcome {{firstName}} {{lastName}}, the time is now: {{currentTime}}. Your role in the system is: {{role}}."</p>
@@ -12,3 +13,13 @@ If the user is logged in , and 'GET /user' endpoint is called, you will render t
         {{/if}} -->
         <a id="logoutLink" href="/logout">Logout</a>
     </div>
+=======
+<div id="userView">
+    <p id="welcome">Welcome {{firstName}} {{lastName}}, the time is now: {{currentTime}}. Your role in the system is: {{role}}."</p>
+    <p id="quote">Favorite Quote: {{favoriteQuote}}</p>
+    {{!-- {{#if role "===" "admin"}}
+        <a id="adminLink" href="/admin">Admin Page</a>
+    {{/if}} --}}
+    <a id="logoutLink" href="/logout">Logout</a>
+</div>
+>>>>>>> 0d3355ced6040c6b207b2b85f646fda1a0ac561d
