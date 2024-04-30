@@ -43,3 +43,53 @@ ONLY USERS WITH A ROLE of admin SHOULD BE ABLE TO ACCESS THE /admin ROUTE!
 2. if the user is logged in, the middleware will "fall through" to the next route calling the next() callback.
 
 */
+
+
+import express from 'express';
+const app = express();
+import configRoutes from './routes/index.js';
+import exphbs from 'express-handlebars';
+// import {authenticateUser} from "./middleware.js"
+import session from 'express-session';
+
+app.use(session({
+  name: 'AuthenticationState',
+  secret: 'some secret string!',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(express.json());
+
+const rewriteUnsupportedBrowserMethods = (req, res, next) => {
+  // If the user posts to the server with a property called _method, rewrite the request's method
+  // To be that method; so if they post _method=PUT you can now allow browsers to POST to a route that gets
+  // rewritten in this middleware to a PUT route
+  if (req.body && req.body._method) {
+    req.method = req.body._method;
+    delete req.body._method;
+  }
+
+  // let the next middleware run:
+  next();
+};
+
+app.use('/public', express.static('public'));
+
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use(rewriteUnsupportedBrowserMethods);
+
+
+app.engine('handlebars', exphbs.engine({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
+
+configRoutes(app);
+
+
+
+
+
+app.listen(3000, () => {
+  console.log("We've now got a server!");
+  console.log('Your routes will be running on http://localhost:3000');
+});

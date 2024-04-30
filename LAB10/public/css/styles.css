@@ -1,13 +1,107 @@
-/* You will create a CSS stylesheet in /public/css/styles.css; this file should have at least 5 rulesets.  You will need to utilize all 5 rulesets on each of the pages (not every page has to use all 5 rulesets each but all 5 rulesets must be utilized by the various pages in your application).  So you can have some rulesets for one page, some for another page but there needs to be at least 5 total rulesets that are used between all the pages. There are two specific rulesets you need to create in addition to the 5 other rulesets:  .light and .dark.  Depending of the user's theme preferences stored in the session, your pages will be displayed using the user's theme preferences. If their theme preference is "light" then the background color of the page should be white and the text color of the page should be black.  If their theme preference is "dark" then the background color of the page should be black and the text color should be white.  HINT: You can just set the body element's class to either dark or light depending on their themePreference stored in the session. obviously, the theme preference only is active after a user is logged in.  */
+body {
+    background-color: #d6fff1;
+}
 
-/* two rulesets you MUST implement in addition to the other 5:
+main {
+	max-width: 75%;
+	margin: auto;
+}
+
+h1 {
+    color: #7ecbba;
+    font-family: Georgia, serif;
+    font-size: 32px;
+    font-weight: lighter;
+    font-style: italic;
+}
+
+h2 {
+    color: #83a41f;
+    font-family: Georgia, serif;
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+p, label {
+    color: #6B705C;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+li {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+a:link {
+    color: #A5A58D;
+}
+a:visited {
+    color: #B97550;
+}
+a:hover {
+    color: #DDBEA9;
+}
+a:active {
+    color: #D6B199;
+}
+a.new {
+    color: #6B705C;
+    font-family: Georgia, serif;
+    font-size: 24px;
+    font-style: italic;
+    margin-bottom: 5px;
+}
+
+.not-found {
+    color: #B97550;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+dt {
+    color: #6B705C;
+    font-family: Georgia, serif;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+dd {
+    color: #81876E;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+input[type=text] {
+    padding: 8px 10px;
+}
+
+button {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 17px;
+    background-color: #DDBEA9;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    padding: 8px 10px;
+    text-align: center;
+    display: inline-block;
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+button:hover {
+    background-color: white;
+    color: #DDBEA9;
+}
 
 .light{
-    
+    color: black;
+    background-color: white;
 }
 
 .dark{
-
+    color: white;
+    background-color: black;
 }
-
-*/
