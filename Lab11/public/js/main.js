@@ -28,36 +28,71 @@ $(document).ready(function () {
     location.reload();
   });
 
-  function fetchMovies(searchTerm) {
+  async function fetchMovies(searchTerm) {
     const apiKey = "CS546";
-    const url = `https://www.omdbapi.com/?apikey=${apiKey}&s=${searchTerm}`;
-    $.ajax({
-      url: url,
-      method: "GET",
-      success: function (data) {
-        displaySearchResults(data.Search);
-      },
-      error: function (error) {
-        console.error("Error fetching movies:", error);
-      },
-    });
+    const urlFirstPage = `http://www.omdbapi.com/?apikey=${apiKey}&s=${searchTerm}`;
+    const urlSecondPage = `http://www.omdbapi.com/?apikey=${apiKey}&s=${searchTerm}&page=2`;
+  
+    try {
+      const [firstPageResponse, secondPageResponse] = await Promise.all([
+        $.ajax({
+          url: urlFirstPage,
+          method: "GET",
+          dataType: "json"
+        }),
+        $.ajax({
+          url: urlSecondPage,
+          method: "GET",
+          dataType: "json"
+        })
+      ]);
+  
+      const firstPageMovies = firstPageResponse.Search || [];
+      const secondPageMovies = secondPageResponse.Search || [];
+  
+      const combinedMovies = [...firstPageMovies, ...secondPageMovies];
+  
+      displaySearchResults(combinedMovies);
+    } catch (error) {
+      console.error("Error fetching movies:", error);
+    }
   }
-
+  
   function displaySearchResults(movies) {
     searchResults.empty().hide();
     movies.forEach((movie) => {
       const li = $("<li>");
+      const img = $("<img>")
+        .attr("src", movie.Poster !== "N/A" ? movie.Poster : "public/no_image.jpeg")
+        .attr("alt", movie.Title + " Poster")
+        .addClass("movie-poster")
+        .click(function() {
+          fetchMovieDetails(movie.imdbID); 
+        });
+      const p = $("<p>")
+        .append(
+          $("<a>")
+            .attr("href", "javascript:void(0)")
+            .attr("data-id", movie.imdbID)
+            .text(movie.Title)
+            .click(function() {
+              fetchMovieDetails(movie.imdbID); 
+            })
+        ); 
       const a = $("<a>")
         .attr("href", "javascript:void(0)")
-        .attr("data-id", movie.imdbID)
-        .text(movie.Title);
-      li.append(a);
+        .attr("data-id", movie.imdbID);
+      li.append(img).append(p).append(a); 
       searchResults.append(li);
     });
     searchResults.show();
     movieDetails.hide();
     rootLink.show();
   }
+  
+  
+  
+  
 
   function fetchMovieDetails(movieId) {
     const apiKey = "CS546";
@@ -79,7 +114,7 @@ $(document).ready(function () {
         <article>
           <h1>${movie.Title}</h1>
           <img src="${
-            movie.Poster !== "N/A" ? movie.Poster : "no_image.jpeg"
+            movie.Poster !== "N/A" ? movie.Poster : "public/no_image.jpeg"
           }" alt="${movie.Title} Poster">
   
           <h2>Plot</h2>

@@ -1,81 +1,89 @@
-/*
-You must include 5 CSS rules that aply to your application
-*/
-/* Style for the movie search form */
 /* styles.css */
 
-/* Resetting default margins and paddings */
-body, h1, form, ul {
-    margin: 0;
-    padding: 0;
-  }
+/* Reset default browser styles */
+body,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="text"] {
+  padding: 8px;
+  margin: 0 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button[type="submit"] {
+  padding: 8px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+ul {
+  list-style-type: none;
+  margin-top: 20px;
+  position: relative;
+  left: 630px;
   
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0; /* Light gray background */
-  }
-  
-  h1 {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  form {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  label {
-    font-weight: bold;
-  }
-  
-  input[type="text"] {
-    width: 300px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin: 0 10px;
-  }
-  
-  button[type="submit"] {
-    padding: 8px 20px;
-    background-color: #4caf50; /* Green */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #45a049; /* Darker green on hover */
-  }
-  
-  ul {
-    list-style-type: none;
-    margin-top: 20px;
-  }
-  
-  #movieDetails {
-    margin-top: 20px;
-  }
-  
- 
-  footer p {
-    margin: 5px 0;
-  }
-  
-  a#rootLink {
-    color: #fff; /* White text for link */
-    background-color: #4caf50; /* Green background for link */
-    padding: 8px 20px;
-    border-radius: 5px;
-    text-decoration: none; /* Remove underline */
-    display: block; /* Make it a block-level element */
-    margin: 20px auto;
-    width: fit-content;
-  }
-  
-  a#rootLink:hover {
-    background-color: #45a049; /* Darker green on hover */
-  }
-  
+}
+
+ul li {
+  margin-bottom: 10px;
+}
+
+#movieDetails {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+footer {
+  margin-top: 50px;
+  text-align: center;
+  font-size: 14px;
+}
+
+footer p {
+  margin-bottom: 5px;
+}
+
+#rootLink {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+}
+
+#rootLink:hover {
+  text-decoration: underline;
+}
+
